@@ -1,0 +1,599 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC173F6C2439A1F600ECF53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F6B2439A1F600ECF53C /* AppDelegate.swift */; };
+		CC173F6E2439A1F600ECF53C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F6D2439A1F600ECF53C /* SceneDelegate.swift */; };
+		CC173F702439A1F600ECF53C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F6F2439A1F600ECF53C /* ContentView.swift */; };
+		CC173F722439A1F800ECF53C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC173F712439A1F800ECF53C /* Assets.xcassets */; };
+		CC173F752439A1F800ECF53C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC173F742439A1F800ECF53C /* Preview Assets.xcassets */; };
+		CC173F782439A1F800ECF53C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC173F762439A1F800ECF53C /* LaunchScreen.storyboard */; };
+		CC173F832439A1F800ECF53C /* SpringRadioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F822439A1F800ECF53C /* SpringRadioTests.swift */; };
+		CC173F8E2439A1F800ECF53C /* SpringRadioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F8D2439A1F800ECF53C /* SpringRadioUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC173F7F2439A1F800ECF53C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC173F602439A1F600ECF53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC173F672439A1F600ECF53C;
+			remoteInfo = SpringRadio;
+		};
+		CC173F8A2439A1F800ECF53C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC173F602439A1F600ECF53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC173F672439A1F600ECF53C;
+			remoteInfo = SpringRadio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CC173F682439A1F600ECF53C /* SpringRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpringRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC173F6B2439A1F600ECF53C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CC173F6D2439A1F600ECF53C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CC173F6F2439A1F600ECF53C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC173F712439A1F800ECF53C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC173F742439A1F800ECF53C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CC173F772439A1F800ECF53C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CC173F792439A1F800ECF53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC173F7E2439A1F800ECF53C /* SpringRadioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpringRadioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC173F822439A1F800ECF53C /* SpringRadioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRadioTests.swift; sourceTree = "<group>"; };
+		CC173F842439A1F800ECF53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC173F892439A1F800ECF53C /* SpringRadioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpringRadioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC173F8D2439A1F800ECF53C /* SpringRadioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRadioUITests.swift; sourceTree = "<group>"; };
+		CC173F8F2439A1F800ECF53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC173F652439A1F600ECF53C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC173F7B2439A1F800ECF53C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC173F862439A1F800ECF53C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC173F5F2439A1F600ECF53C = {
+			isa = PBXGroup;
+			children = (
+				CC173F6A2439A1F600ECF53C /* SpringRadio */,
+				CC173F812439A1F800ECF53C /* SpringRadioTests */,
+				CC173F8C2439A1F800ECF53C /* SpringRadioUITests */,
+				CC173F692439A1F600ECF53C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC173F692439A1F600ECF53C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC173F682439A1F600ECF53C /* SpringRadio.app */,
+				CC173F7E2439A1F800ECF53C /* SpringRadioTests.xctest */,
+				CC173F892439A1F800ECF53C /* SpringRadioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC173F6A2439A1F600ECF53C /* SpringRadio */ = {
+			isa = PBXGroup;
+			children = (
+				CC173F6B2439A1F600ECF53C /* AppDelegate.swift */,
+				CC173F6D2439A1F600ECF53C /* SceneDelegate.swift */,
+				CC173F6F2439A1F600ECF53C /* ContentView.swift */,
+				CC173F712439A1F800ECF53C /* Assets.xcassets */,
+				CC173F762439A1F800ECF53C /* LaunchScreen.storyboard */,
+				CC173F792439A1F800ECF53C /* Info.plist */,
+				CC173F732439A1F800ECF53C /* Preview Content */,
+			);
+			path = SpringRadio;
+			sourceTree = "<group>";
+		};
+		CC173F732439A1F800ECF53C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CC173F742439A1F800ECF53C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CC173F812439A1F800ECF53C /* SpringRadioTests */ = {
+			isa = PBXGroup;
+			children = (
+				CC173F822439A1F800ECF53C /* SpringRadioTests.swift */,
+				CC173F842439A1F800ECF53C /* Info.plist */,
+			);
+			path = SpringRadioTests;
+			sourceTree = "<group>";
+		};
+		CC173F8C2439A1F800ECF53C /* SpringRadioUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CC173F8D2439A1F800ECF53C /* SpringRadioUITests.swift */,
+				CC173F8F2439A1F800ECF53C /* Info.plist */,
+			);
+			path = SpringRadioUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC173F672439A1F600ECF53C /* SpringRadio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC173F922439A1F800ECF53C /* Build configuration list for PBXNativeTarget "SpringRadio" */;
+			buildPhases = (
+				CC173F642439A1F600ECF53C /* Sources */,
+				CC173F652439A1F600ECF53C /* Frameworks */,
+				CC173F662439A1F600ECF53C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpringRadio;
+			productName = SpringRadio;
+			productReference = CC173F682439A1F600ECF53C /* SpringRadio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CC173F7D2439A1F800ECF53C /* SpringRadioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC173F952439A1F800ECF53C /* Build configuration list for PBXNativeTarget "SpringRadioTests" */;
+			buildPhases = (
+				CC173F7A2439A1F800ECF53C /* Sources */,
+				CC173F7B2439A1F800ECF53C /* Frameworks */,
+				CC173F7C2439A1F800ECF53C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC173F802439A1F800ECF53C /* PBXTargetDependency */,
+			);
+			name = SpringRadioTests;
+			productName = SpringRadioTests;
+			productReference = CC173F7E2439A1F800ECF53C /* SpringRadioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CC173F882439A1F800ECF53C /* SpringRadioUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC173F982439A1F800ECF53C /* Build configuration list for PBXNativeTarget "SpringRadioUITests" */;
+			buildPhases = (
+				CC173F852439A1F800ECF53C /* Sources */,
+				CC173F862439A1F800ECF53C /* Frameworks */,
+				CC173F872439A1F800ECF53C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC173F8B2439A1F800ECF53C /* PBXTargetDependency */,
+			);
+			name = SpringRadioUITests;
+			productName = SpringRadioUITests;
+			productReference = CC173F892439A1F800ECF53C /* SpringRadioUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC173F602439A1F600ECF53C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = jack;
+				TargetAttributes = {
+					CC173F672439A1F600ECF53C = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					CC173F7D2439A1F800ECF53C = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = CC173F672439A1F600ECF53C;
+					};
+					CC173F882439A1F800ECF53C = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = CC173F672439A1F600ECF53C;
+					};
+				};
+			};
+			buildConfigurationList = CC173F632439A1F600ECF53C /* Build configuration list for PBXProject "SpringRadio" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC173F5F2439A1F600ECF53C;
+			productRefGroup = CC173F692439A1F600ECF53C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC173F672439A1F600ECF53C /* SpringRadio */,
+				CC173F7D2439A1F800ECF53C /* SpringRadioTests */,
+				CC173F882439A1F800ECF53C /* SpringRadioUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC173F662439A1F600ECF53C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC173F782439A1F800ECF53C /* LaunchScreen.storyboard in Resources */,
+				CC173F752439A1F800ECF53C /* Preview Assets.xcassets in Resources */,
+				CC173F722439A1F800ECF53C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC173F7C2439A1F800ECF53C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC173F872439A1F800ECF53C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC173F642439A1F600ECF53C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC173F6C2439A1F600ECF53C /* AppDelegate.swift in Sources */,
+				CC173F6E2439A1F600ECF53C /* SceneDelegate.swift in Sources */,
+				CC173F702439A1F600ECF53C /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC173F7A2439A1F800ECF53C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC173F832439A1F800ECF53C /* SpringRadioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC173F852439A1F800ECF53C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC173F8E2439A1F800ECF53C /* SpringRadioUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC173F802439A1F800ECF53C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC173F672439A1F600ECF53C /* SpringRadio */;
+			targetProxy = CC173F7F2439A1F800ECF53C /* PBXContainerItemProxy */;
+		};
+		CC173F8B2439A1F800ECF53C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC173F672439A1F600ECF53C /* SpringRadio */;
+			targetProxy = CC173F8A2439A1F800ECF53C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CC173F762439A1F800ECF53C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC173F772439A1F800ECF53C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CC173F902439A1F800ECF53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CC173F912439A1F800ECF53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CC173F932439A1F800ECF53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SpringRadio/Preview Content\"";
+				DEVELOPMENT_TEAM = B22726TNGH;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SpringRadio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jack.SpringRadio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CC173F942439A1F800ECF53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"SpringRadio/Preview Content\"";
+				DEVELOPMENT_TEAM = B22726TNGH;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SpringRadio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jack.SpringRadio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CC173F962439A1F800ECF53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B22726TNGH;
+				INFOPLIST_FILE = SpringRadioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jack.SpringRadioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpringRadio.app/SpringRadio";
+			};
+			name = Debug;
+		};
+		CC173F972439A1F800ECF53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B22726TNGH;
+				INFOPLIST_FILE = SpringRadioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jack.SpringRadioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpringRadio.app/SpringRadio";
+			};
+			name = Release;
+		};
+		CC173F992439A1F800ECF53C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B22726TNGH;
+				INFOPLIST_FILE = SpringRadioUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jack.SpringRadioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SpringRadio;
+			};
+			name = Debug;
+		};
+		CC173F9A2439A1F800ECF53C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B22726TNGH;
+				INFOPLIST_FILE = SpringRadioUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jack.SpringRadioUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SpringRadio;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC173F632439A1F600ECF53C /* Build configuration list for PBXProject "SpringRadio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC173F902439A1F800ECF53C /* Debug */,
+				CC173F912439A1F800ECF53C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC173F922439A1F800ECF53C /* Build configuration list for PBXNativeTarget "SpringRadio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC173F932439A1F800ECF53C /* Debug */,
+				CC173F942439A1F800ECF53C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC173F952439A1F800ECF53C /* Build configuration list for PBXNativeTarget "SpringRadioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC173F962439A1F800ECF53C /* Debug */,
+				CC173F972439A1F800ECF53C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC173F982439A1F800ECF53C /* Build configuration list for PBXNativeTarget "SpringRadioUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC173F992439A1F800ECF53C /* Debug */,
+				CC173F9A2439A1F800ECF53C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC173F602439A1F600ECF53C /* Project object */;
+}
