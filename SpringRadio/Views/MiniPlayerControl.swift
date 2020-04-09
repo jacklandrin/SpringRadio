@@ -44,7 +44,7 @@ struct MiniPlayerControl: View {
                         
                     Spacer()
                     VStack {
-                        Text(currentItem.streamTitle).foregroundColor(self.currentItem.sideColor)
+                        Text(currentItem.streamTitle).foregroundColor(self.currentItem.sideColor).lineLimit(2)
                         HStack{
                             Spacer()
                             Button(action:tapPreviousButton) {

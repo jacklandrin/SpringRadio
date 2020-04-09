@@ -11,7 +11,7 @@ import SwiftUI
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
-    @State var floatTitleTextX: CGFloat = 0.0
+//    @State var floatTitleTextX: CGFloat = 0.0
     let imageEdge:CGFloat = UIScreen.main.bounds.width * 0.5
     let floatTitleFontSize: CGFloat = 70.0
     let streamTitleFontSize: CGFloat = 60.0
@@ -56,16 +56,14 @@ struct StationDetail: View {
     var body: some View {
         self.currentItem.themeColor.brightness(0.05).edgesIgnoringSafeArea(.all).overlay(
             ZStack {
-//                VStack {
-//                    Spacer()
-                    Image(self.currentItem.radioItem.imageName)
-                    .resizable()
-                    .frame(width:imageEdge, height: imageEdge)
-                    .scaledToFit()
-                    .shadow(radius: 5)
-                        .padding(.bottom, 150)
-//                    Spacer()
-//                }
+
+                Image(self.currentItem.radioItem.imageName)
+                .resizable()
+                .frame(width:imageEdge, height: imageEdge)
+                .scaledToFit()
+                .shadow(radius: 5)
+                    .padding(.bottom, 150)
+
                 
                 VStack(alignment:.leading){
                     GeometryReader { geometry in
@@ -78,6 +76,7 @@ struct StationDetail: View {
                     Spacer()
                 }.opacity(0.95)
             }.edgesIgnoringSafeArea(.all)
+            
         ).onAppear{
             self.floatText.startAnimation()
         }.onReceive(self.floatText.timer) { n in

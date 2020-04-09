@@ -42,7 +42,6 @@ class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
         self.audioPlayer?.play()
         
         
-        
         let metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
         metadataOutput.setDelegate(self, queue: .main)
         self.playerItem?.add(metadataOutput)

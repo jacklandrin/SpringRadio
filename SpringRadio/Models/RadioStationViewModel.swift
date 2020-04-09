@@ -115,6 +115,7 @@ protocol Playable : ObservableObject {
 
 enum RadioURL: String {
     case danceUK = "http://uk2.internet-radio.com:8024/listen.pls"
+    case boxUK = "http://51.75.170.46:6191/stream"
     case rrDrumAndBass = "http://air2.radiorecord.ru:9003/drumhits_320"
     case dfmPopDance = "https://dfm-popdance.hostingradio.ru/popdance96.aacp"
     case dfmRussianDance = "https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp"
@@ -126,12 +127,20 @@ enum RadioURL: String {
     case rrRussianHits = "http://air2.radiorecord.ru:9003/russianhits_320"
     case rrEDMHits = "http://air2.radiorecord.ru:9003/edmhits_320"
     case rrFutureHouse = "http://air2.radiorecord.ru:9003/fut_320"
-    
+    case veniceClassicItalia = "http://174.36.206.197:8000/listen.pls?sid=1"
+    case austinBluesRadio = "http://ca10.rcast.net:8036/listen.pls?sid=1"
+    case soundFusion = "http://uk6.internet-radio.com:8346/listen.pls"
 }
 
 class RadioItems : ObservableObject {
    @Published var values: [RadioStationPlayable] =  [
             RadioStationPlayable(radioItem: RadioItem(title: "Dance UK Radio", streamURL: .danceUK, imageName: "danceUK")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Box UK Radio", streamURL: .boxUK, imageName: "boxUK")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Sound Fusion Radio", streamURL: .soundFusion, imageName: "soundFusion")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Country 105 FM", streamURL: .countryRadio, imageName: "countryRadio")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Americas Country", streamURL: .americasCountry, imageName: "americasCountry")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Venice Classic Radio Italia", streamURL: .veniceClassicItalia, imageName: "veniceClassic")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Austin Blues Radio", streamURL: .austinBluesRadio, imageName: "austinBlues")),
             RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Drum'n'Bass", streamURL: .rrDrumAndBass, imageName: "radioRecord")),
             RadioStationPlayable(radioItem: RadioItem(title: "DFM Pop Dance", streamURL: .dfmPopDance, imageName: "dfmPopDance")),
             RadioStationPlayable(radioItem: RadioItem(title: "DFM Russian Dance", streamURL: .dfmRussianDance, imageName: "russianDance")),
@@ -140,8 +149,6 @@ class RadioItems : ObservableObject {
             RadioStationPlayable(radioItem: RadioItem(title: "Bat Yam 89.1 FM", streamURL: .batYamRadioRus, imageName: "batYamRussian")),
             RadioStationPlayable(radioItem: RadioItem(title: "Radio Records Russian Gold", streamURL: .rrRussianGold, imageName: "rrRussianGold")),
             RadioStationPlayable(radioItem: RadioItem(title: "DnB My Radio", streamURL: .dnbMyRadio, imageName: "dnbMyRadio")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Country 105 FM", streamURL: .countryRadio, imageName: "countryRadio")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Americas Country", streamURL: .americasCountry, imageName: "americasCountry")),
             RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Future House", streamURL: .rrFutureHouse, imageName: "rrFutureHouse"))
         ]
     
