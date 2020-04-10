@@ -74,7 +74,8 @@ struct StationDetail: View {
                         self.makeFloatStreamTitleText(geometry)
                     }
                     Spacer()
-                }.opacity(0.95)
+                    }.clipped()
+                    .opacity(0.95)
             }.edgesIgnoringSafeArea(.all)
             
         ).onAppear{
