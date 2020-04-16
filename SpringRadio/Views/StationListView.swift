@@ -15,7 +15,15 @@ struct StationListView: View {
     @EnvironmentObject var items : RadioItems
     
     var body: some View {
-        NavigationView {
+        GeometryReader { g in
+            self.makeNavigationView(g: g)
+        }
+    }
+    
+    func makeNavigationView(g:GeometryProxy) -> some View {
+       screenWidth = g.frame(in: .global).width
+       screenHeight = g.frame(in: .global).height
+       let view = NavigationView {
             ZStack{
                 List {
                     ForEach (self.items.values.indices) { i in
@@ -52,6 +60,7 @@ struct StationListView: View {
             }
             .navigationBarTitle(Text("Stations"))
         }.navigationViewStyle(StackNavigationViewStyle())
+        return view
     }
     
     func listSpacer() -> CGFloat {

@@ -11,7 +11,7 @@ import SwiftUI
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
-    @State var imageEdge:CGFloat = screenWidth * 0.5
+//    @State var imageEdge:CGFloat = screenWidth * 0.5
     let floatTitleFontSize: CGFloat = 70.0
     let streamTitleFontSize: CGFloat = 60.0
     
@@ -39,31 +39,33 @@ struct StationDetail: View {
         .rotationEffect(self.floatText.orientation == .horizontal ? .degrees(0) : .degrees(90))
     }
     
-//    func recuriveAnimation() {
-//        let distanceX = screenWidth + self.floatText.titleWidth
-//        if self.floatTitleTextX != -distanceX {
-//            self.floatTitleTextX = -distanceX
-//        } else {
-//            self.floatTitleTextX = distanceX
-//        }
-//        print("floatTitleText X:\(self.floatTitleTextX)")
-//        DispatchQueue.main.asyncAfter(deadline: .now() + floatAnimationDuration ) {
-//            self.recuriveAnimation()
-//        }
-//    }
     
     var body: some View {
         self.currentItem.themeColor.brightness(0.05).edgesIgnoringSafeArea(.all).overlay(
-            ZStack {
-
+            GeometryReader{ g in
+                self.makeMainStack(g)
+            }
+            
+            
+        ).onAppear{
+            self.floatText.startAnimation()
+        }.onReceive(self.floatText.timer) { n in
+            print("timer \(n)")
+            self.floatText.startAnimation()
+        }
+    }
+    
+    
+    func makeMainStack(_ g:GeometryProxy) -> some View {
+        screenWidth = g.frame(in: .global).width
+        screenHeight = g.frame(in: .global).height
+        let mainStack = ZStack {
                 Image(self.currentItem.radioItem.imageName)
                 .resizable()
-                    .frame(width:imageEdge / 2, height: imageEdge / 2)
+                    .frame(width:screenWidth / 2, height: screenWidth / 2)
                 .scaledToFit()
                 .shadow(radius: 5)
                     .padding(.bottom, 150)
-
-                
                 VStack(alignment:.leading){
                     GeometryReader { geometry in
                         self.makeFloatTitleText(geometry)
@@ -76,18 +78,11 @@ struct StationDetail: View {
                     }.clipped()
                     .opacity(0.95)
             }.edgesIgnoringSafeArea(.all)
-            
-        ).onAppear{
-            self.floatText.startAnimation()
-        }.onReceive(self.floatText.timer) { n in
-            print("timer \(n)")
-            self.floatText.startAnimation()
-        }
+            return mainStack
     }
     
     func makeFloatTitleText(_ geometry:GeometryProxy) -> some View {
-        self.floatText.titleWidth = UILabel.calculationTextWidth(text: self.currentItem.radioItem.title, fontSize: floatTitleFontSize)//geometry.size.width
-//        self.floatTitleTextX = self.floatText.titleX
+        self.floatText.titleWidth = UILabel.calculationTextWidth(text: self.currentItem.radioItem.title, fontSize: floatTitleFontSize)
         let text = self.floatTitleText.frame(width:self.floatText.titleWidth)
             
         return text
@@ -99,28 +94,6 @@ struct StationDetail: View {
     }
 }
 
-//public extension View {
-//    func offset(x: CGFloat, y: CGFloat) -> some View {
-//        return modifier(_OffsetEffect(offset: CGSize(width: x, height: y)))
-//    }
-//
-//    func offset(_ offset: CGSize) -> some View {
-//        return modifier(_OffsetEffect(offset: offset))
-//    }
-//}
-//
-//struct _OffsetEffect: GeometryEffect {
-//    var offset: CGSize
-//
-//    var animatableData: CGSize.AnimatableData {
-//        get { CGSize.AnimatableData(offset.width, offset.height) }
-//        set { offset = CGSize(width: newValue.first, height: newValue.second) }
-//    }
-//
-//    public func effectValue(size: CGSize) -> ProjectionTransform {
-//        return ProjectionTransform(CGAffineTransform(translationX: offset.width, y: offset.height))
-//    }
-//}
 
 struct StationDetail_Previews: PreviewProvider {
     static var previews: some View {

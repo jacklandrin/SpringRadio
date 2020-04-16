@@ -16,15 +16,15 @@ enum FloatTextOrientation: Int {
 
 let floatAnimationDuration = 10.0
 var screenWidth = UIApplication.shared.windows[0].bounds.width
-var screenHeight = UIApplication.shared.windows[0].bounds.height//UIScreen.main.bounds.height
+var screenHeight = UIApplication.shared.windows[0].bounds.height
 
 class FloatTextViewModel: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()//PassthroughSubject<FloatTextViewModel, Never>()
+    let objectWillChange = ObservableObjectPublisher()
    
     let timer = Timer.publish(every: floatAnimationDuration, on: .main, in: .common).autoconnect()
     
     let animation = Animation.linear(duration: floatAnimationDuration)
-    
+
     
     var orientation : FloatTextOrientation = .horizontal
     {
@@ -33,11 +33,6 @@ class FloatTextViewModel: ObservableObject {
         }
     }
     
-//    var currentItem:RadioStationPlayable
-//    
-//    init(radioStation: RadioStationPlayable) {
-//        self.currentItem = radioStation
-//    }
     
     private var _titleWidth :CGFloat = 300
     

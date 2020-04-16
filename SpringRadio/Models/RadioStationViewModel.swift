@@ -42,6 +42,7 @@ class RadioStationPlayable: Playable, Identifiable{
     var radioItem : RadioItem
     init(radioItem:RadioItem) {
         self.radioItem = radioItem
+        
     }
     
     var streamTitle: String = defaultStreamTitle

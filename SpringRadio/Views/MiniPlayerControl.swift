@@ -10,14 +10,23 @@ import SwiftUI
 
 struct MiniPlayerControl: View {
     @EnvironmentObject var currentItem : RadioStationPlayable
+    @State var tappedImage = false
     var previousStation : () -> Void
     var nextStation : () -> Void
 
     
     var body: some View {
-        ZStack {
+        GeometryReader{ g in
+            self.makeMainStack(g: g)
+        }
+    }
+    
+    func makeMainStack(g: GeometryProxy) -> some View {
+       screenWidth = g.frame(in: .global).width
+       screenHeight = g.frame(in: .global).height
+       let view = ZStack {
             Path { path in
-                let width = UIScreen.main.bounds.width
+                let width = screenWidth
                 let height:CGFloat = TrapezoidParameters.trapezoidHeight
                 path.move(to: CGPoint(x: 0, y: 0))
                 TrapezoidParameters.points.forEach {
@@ -33,12 +42,13 @@ struct MiniPlayerControl: View {
                 Spacer(minLength: TrapezoidParameters.trapezoidHeight * 0.3)
                 HStack{
                     NavigationLink(destination: StationDetail().environmentObject( self.currentItem)
-                        .background(self.currentItem.themeColor)) {
+                        .background(self.currentItem.themeColor), isActive:self.$tappedImage.animation()) {
                         Image(self.currentItem.radioItem.imageName).renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original)).resizable()
                             .frame( width:60,height:60)
                             .scaledToFit()
                             .padding(10)
                             .shadow(radius: 3)
+                            .scaleEffect(self.tappedImage ? 1.2 : 1.0)
                     }
                    
                         
@@ -49,17 +59,15 @@ struct MiniPlayerControl: View {
                             Spacer()
                             Button(action:tapPreviousButton) {
                                 Image("previous_button").foregroundColor(self.currentItem.sideColor).opacity(0.9)
-                                    //.renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                             }
                             Spacer()
                             Button(action:controlPlay) {
                                 Image(self.currentItem.isPlaying ? "pause_button" : "play_button").foregroundColor(self.currentItem.sideColor).opacity(0.9)
-                                    //.renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
+                                    
                             }
                             Spacer()
                             Button(action:tapNextButton) {
                                 Image("next_button").foregroundColor(self.currentItem.sideColor).opacity(0.9)
-                                    //.renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                             }
                             Spacer()
                         }
@@ -69,6 +77,7 @@ struct MiniPlayerControl: View {
                 Spacer()
             }
         }.offset(y:takeUpDownControl()).animation(.spring())
+        return view
     }
     
     func controlPlay() {
@@ -97,3 +106,4 @@ struct MiniPlayerControl_Previews: PreviewProvider {
         MiniPlayerControl(previousStation: {}, nextStation: {}).environmentObject(RadioStationPlayable.radionStationExample()).previewLayout(.fixed(width: UIScreen.main.bounds.width, height: TrapezoidParameters.trapezoidHeight))
     }
 }
+
