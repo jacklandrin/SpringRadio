@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct MiniPlayerControl: View {
+    
     @EnvironmentObject var currentItem : RadioStationPlayable
     @State var tappedImage = false
+    @State var imageAngle:Double = 0
+    @State var isAnimating: Bool = false
+    
     var previousStation : () -> Void
     var nextStation : () -> Void
-
+    
     
     var body: some View {
         GeometryReader{ g in
-            self.makeMainStack(g: g)
+            self.makeMainStack(g: g).onAppear {
+                self.isAnimating = true
+            }
         }
     }
     
@@ -43,13 +49,18 @@ struct MiniPlayerControl: View {
                 HStack{
                     NavigationLink(destination: StationDetail().environmentObject( self.currentItem)
                         .background(self.currentItem.themeColor), isActive:self.$tappedImage.animation()) {
-                        Image(self.currentItem.radioItem.imageName).renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original)).resizable()
+                        Image(self.currentItem.radioItem.imageName).renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
+                            .resizable()
                             .frame( width:60,height:60)
                             .scaledToFit()
-                            .padding(10)
+                            .clipShape(Circle())
                             .shadow(radius: 3)
                             .scaleEffect(self.tappedImage ? 1.2 : 1.0)
+                            .rotationEffect(Angle(degrees: self.isAnimating ? 360.0 : 0.0))
+                            .animation(Animation.linear(duration: 20).repeatForever(autoreverses: false))
                     }
+                    .buttonStyle(MagnifyButtonStyle())
+                    .padding(.leading ,25)
                    
                         
                     Spacer()
@@ -100,6 +111,12 @@ struct MiniPlayerControl: View {
     
 }
 
+
+struct MagnifyButtonStyle:ButtonStyle{
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.scaleEffect(configuration.isPressed ? 1.2 : 1.0)
+    }
+}
 
 struct MiniPlayerControl_Previews: PreviewProvider {
     static var previews: some View {

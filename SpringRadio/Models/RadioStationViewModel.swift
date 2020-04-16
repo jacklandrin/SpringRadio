@@ -131,6 +131,8 @@ enum RadioURL: String {
     case veniceClassicItalia = "http://174.36.206.197:8000/listen.pls?sid=1"
     case austinBluesRadio = "http://ca10.rcast.net:8036/listen.pls?sid=1"
     case soundFusion = "http://uk6.internet-radio.com:8346/listen.pls"
+    case asiaDream = "http://66.70.187.44:9029/listen.pls?sid=1"
+    case jpopproject = "http://184.75.223.178:8083/listen.pls?sid=1"
 }
 
 class RadioItems : ObservableObject {
@@ -142,6 +144,8 @@ class RadioItems : ObservableObject {
             RadioStationPlayable(radioItem: RadioItem(title: "Americas Country", streamURL: .americasCountry, imageName: "americasCountry")),
             RadioStationPlayable(radioItem: RadioItem(title: "Venice Classic Radio Italia", streamURL: .veniceClassicItalia, imageName: "veniceClassic")),
             RadioStationPlayable(radioItem: RadioItem(title: "Austin Blues Radio", streamURL: .austinBluesRadio, imageName: "austinBlues")),
+            RadioStationPlayable(radioItem: RadioItem(title: "PowerPlay Kawaii", streamURL: .asiaDream, imageName: "asiaDream")),
+            RadioStationPlayable(radioItem: RadioItem(title: "J-Pop Project Radio", streamURL: .jpopproject, imageName: "jpopproject")),
             RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Drum'n'Bass", streamURL: .rrDrumAndBass, imageName: "radioRecord")),
             RadioStationPlayable(radioItem: RadioItem(title: "DFM Pop Dance", streamURL: .dfmPopDance, imageName: "dfmPopDance")),
             RadioStationPlayable(radioItem: RadioItem(title: "DFM Russian Dance", streamURL: .dfmRussianDance, imageName: "russianDance")),

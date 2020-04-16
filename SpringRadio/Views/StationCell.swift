@@ -13,10 +13,10 @@ struct StationCell: View {
     
     var body: some View {
         HStack{
-            Image(item.radioItem.imageName).resizable().frame(width:40,height:40).fixedSize()
+            Image(item.radioItem.imageName).resizable().frame(width:40,height:40).fixedSize().clipShape(Circle())
             Text(item.radioItem.title)
             Spacer()
-            Text("▶️").opacity(item.isPlaying ?  1 : 0)
+            Image(systemName: "play.circle").opacity(item.isPlaying ?  1 : 0)
         }
     }
 }
