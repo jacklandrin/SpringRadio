@@ -52,15 +52,15 @@ struct MiniPlayerControl: View {
                         Image(self.currentItem.radioItem.imageName).renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                             .resizable()
                             .frame( width:60,height:60)
-                            .scaledToFit()
+                            .scaledToFill()
                             .clipShape(Circle())
                             .shadow(radius: 3)
-                            .scaleEffect(self.tappedImage ? 1.2 : 1.0)
                             .rotationEffect(Angle(degrees: self.isAnimating ? 360.0 : 0.0))
                             .animation(Animation.linear(duration: 20).repeatForever(autoreverses: false))
                     }
                     .buttonStyle(MagnifyButtonStyle())
                     .padding(.leading ,25)
+                    .scaleEffect(self.tappedImage ? 1.2 : 1.0)
                    
                         
                     Spacer()

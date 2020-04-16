@@ -133,6 +133,7 @@ enum RadioURL: String {
     case soundFusion = "http://uk6.internet-radio.com:8346/listen.pls"
     case asiaDream = "http://66.70.187.44:9029/listen.pls?sid=1"
     case jpopproject = "http://184.75.223.178:8083/listen.pls?sid=1"
+    case pure90sRadio = "http://185.105.4.100:8183/listen.pls?sid=1"
 }
 
 class RadioItems : ObservableObject {
@@ -142,6 +143,7 @@ class RadioItems : ObservableObject {
             RadioStationPlayable(radioItem: RadioItem(title: "Sound Fusion Radio", streamURL: .soundFusion, imageName: "soundFusion")),
             RadioStationPlayable(radioItem: RadioItem(title: "Country 105 FM", streamURL: .countryRadio, imageName: "countryRadio")),
             RadioStationPlayable(radioItem: RadioItem(title: "Americas Country", streamURL: .americasCountry, imageName: "americasCountry")),
+            RadioStationPlayable(radioItem: RadioItem(title: "Pure 90s Radio", streamURL: .pure90sRadio, imageName: "pure90s")),
             RadioStationPlayable(radioItem: RadioItem(title: "Venice Classic Radio Italia", streamURL: .veniceClassicItalia, imageName: "veniceClassic")),
             RadioStationPlayable(radioItem: RadioItem(title: "Austin Blues Radio", streamURL: .austinBluesRadio, imageName: "austinBlues")),
             RadioStationPlayable(radioItem: RadioItem(title: "PowerPlay Kawaii", streamURL: .asiaDream, imageName: "asiaDream")),
