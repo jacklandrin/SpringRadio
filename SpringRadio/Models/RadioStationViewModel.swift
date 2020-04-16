@@ -93,7 +93,7 @@ class RadioStationPlayable: Playable, Identifiable{
     }
     
     private func makeTextColor(from color : UIColor) -> UIColor {
-        return color.hslColor.shiftHue(by: 0.4).shiftSaturation(by: -0.4).shiftBrightness(by: 0.5).uiColor
+        return color.hslColor.shiftHue(by: 0.35).shiftSaturation(by: -0.42).shiftBrightness(by: 0.53).uiColor
     }
     
     
