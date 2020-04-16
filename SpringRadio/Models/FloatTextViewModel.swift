@@ -15,8 +15,8 @@ enum FloatTextOrientation: Int {
 }
 
 let floatAnimationDuration = 10.0
-let screenWidth = UIScreen.main.bounds.width
-let screenHeight = UIScreen.main.bounds.height
+var screenWidth = UIApplication.shared.windows[0].bounds.width
+var screenHeight = UIApplication.shared.windows[0].bounds.height//UIScreen.main.bounds.height
 
 class FloatTextViewModel: ObservableObject {
     let objectWillChange = ObservableObjectPublisher()//PassthroughSubject<FloatTextViewModel, Never>()
@@ -178,5 +178,6 @@ class FloatTextViewModel: ObservableObject {
         }
         
     }
+    
     
 }

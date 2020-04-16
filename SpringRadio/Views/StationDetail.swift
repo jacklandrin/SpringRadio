@@ -11,8 +11,7 @@ import SwiftUI
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
-//    @State var floatTitleTextX: CGFloat = 0.0
-    let imageEdge:CGFloat = UIScreen.main.bounds.width * 0.5
+    @State var imageEdge:CGFloat = screenWidth * 0.5
     let floatTitleFontSize: CGFloat = 70.0
     let streamTitleFontSize: CGFloat = 60.0
     
@@ -59,7 +58,7 @@ struct StationDetail: View {
 
                 Image(self.currentItem.radioItem.imageName)
                 .resizable()
-                .frame(width:imageEdge, height: imageEdge)
+                    .frame(width:imageEdge / 2, height: imageEdge / 2)
                 .scaledToFit()
                 .shadow(radius: 5)
                     .padding(.bottom, 150)
