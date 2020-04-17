@@ -174,5 +174,7 @@ class FloatTextViewModel: ObservableObject {
         
     }
     
-    
+    deinit {
+        
+    }
 }
