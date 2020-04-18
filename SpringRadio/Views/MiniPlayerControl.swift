@@ -100,12 +100,12 @@ struct MiniPlayerControl: View {
     }
     
     func tapPreviousButton() {
-        self.currentItem.isPlaying = false
+//        self.currentItem.isPlaying = false
         self.previousStation()
     }
     
     func tapNextButton() {
-        self.currentItem.isPlaying = false
+//        self.currentItem.isPlaying = false
         self.nextStation()
     }
     

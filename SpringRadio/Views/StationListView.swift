@@ -11,7 +11,7 @@ import AVFoundation
 
 struct StationListView: View {
     
-    @State var currentStationIndex : Int = 0
+//    @State var currentStationIndex : Int = 0
     @EnvironmentObject var items : RadioItems
     
     var body: some View {
@@ -31,8 +31,8 @@ struct StationListView: View {
                         .onTapGesture {
                             let item = self.items.values[i]
                             item.isPlaying = !item.isPlaying
-                            if item.isPlaying && self.currentStationIndex != i {
-                                self.currentStationIndex = i
+                            if item.isPlaying && self.items.currentStationIndex != i {
+                                self.items.currentStationIndex = i
                             }
                         }
                     }
@@ -41,20 +41,8 @@ struct StationListView: View {
                 
                 VStack {
                     Spacer()
-                    MiniPlayerControl(previousStation: {
-                        guard self.currentStationIndex > 0 else {
-                            return
-                        }
-                        self.currentStationIndex -= 1
-                        self.items.values[self.currentStationIndex].isPlaying = true
-                    }, nextStation: {
-                        guard self.currentStationIndex < self.items.values.count - 1 else  {
-                            return
-                        }
-                        self.currentStationIndex += 1
-                        self.items.values[self.currentStationIndex].isPlaying = true
-                    })
-                        .environmentObject(self.items.values[self.currentStationIndex])
+                    MiniPlayerControl(previousStation: self.items.previousStation, nextStation: self.items.nextStation)
+                        .environmentObject(self.items.values[self.items.currentStationIndex])
                         .frame(height:TrapezoidParameters.trapezoidHeight)
                 }.edgesIgnoringSafeArea(.all)
             }
@@ -64,7 +52,7 @@ struct StationListView: View {
     }
     
     func listSpacer() -> CGFloat {
-        self.items.values[self.currentStationIndex].isPlaying ? TrapezoidParameters.trapezoidHeight - 32 : 0
+        self.items.values[self.items.currentStationIndex].isPlaying ? TrapezoidParameters.trapezoidHeight - 32 : 0
     }
 }
 

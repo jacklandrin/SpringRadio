@@ -20,9 +20,10 @@ struct RadioItem {
 let defaultStreamTitle = "Loading..."
 
 
-class RadioStationPlayable: Playable, Identifiable{
+class RadioStationPlayable: Playable, ObservableObject, Identifiable{
+
     let id = UUID()
-    @Published var isPlaying: Bool = false
+    var isPlaying: Bool = false
     {
         didSet {
             if isPlaying {
@@ -40,9 +41,10 @@ class RadioStationPlayable: Playable, Identifiable{
     }
     
     var radioItem : RadioItem
-    init(radioItem:RadioItem) {
+    init(radioItem:RadioItem, delegate: RadioItemListDelegate?, itemStatesInList :ItemStatesInList = .Middle) {
         self.radioItem = radioItem
-        
+        self.delegate = delegate
+        self.itemStatesInList = itemStatesInList
     }
     
     var streamTitle: String = defaultStreamTitle
@@ -66,6 +68,25 @@ class RadioStationPlayable: Playable, Identifiable{
         }
     }
     
+    var delegate: RadioItemListDelegate?
+    
+    var itemStatesInList: ItemStatesInList = .Middle
+    
+    func nextStation() {
+        guard self.delegate != nil else {
+            return
+        }
+        
+        self.delegate?.nextStation()
+    }
+    
+    func previousStation() {
+        guard self.delegate != nil else {
+            return
+        }
+        
+        self.delegate?.previousStation()
+    }
     
     private func seizeColorInImage(imageName:String, defaultColor: Color) {
         self.themeColor = defaultColor
@@ -97,21 +118,33 @@ class RadioStationPlayable: Playable, Identifiable{
     }
     
     
-    let objectWillChange = ObservableObjectPublisher()//PassthroughSubject<RadioStationPlayable, Never>()
+    let objectWillChange = ObservableObjectPublisher()
 }
 
 
 extension RadioStationPlayable {
    
     static func radionStationExample() -> RadioStationPlayable {
-        let radioStation = RadioStationPlayable(radioItem: RadioItem(title: "Dance UK Radio", streamURL: .danceUK, imageName: "danceUK"))
+        let radioStation = RadioStationPlayable(radioItem: RadioItem(title: "Dance UK Radio", streamURL: .danceUK, imageName: "danceUK"), delegate: nil)
         radioStation.isPlaying = true
         return radioStation
     }
 }
 
-protocol Playable : ObservableObject {
+protocol Playable {
     var isPlaying : Bool { get set }
+    var streamTitle : String { get set }
+    var radioItem : RadioItem { get set }
+    var delegate : RadioItemListDelegate? { get set }
+    var itemStatesInList: ItemStatesInList { get set }
+    func nextStation()
+    func previousStation()
+    
+    
+}
+
+enum ItemStatesInList {
+    case First, Middle, Last
 }
 
 enum RadioURL: String {
@@ -136,30 +169,56 @@ enum RadioURL: String {
     case pure90sRadio = "http://185.105.4.100:8183/listen.pls?sid=1"
 }
 
-class RadioItems : ObservableObject {
-   @Published var values: [RadioStationPlayable] =  [
-            RadioStationPlayable(radioItem: RadioItem(title: "Dance UK Radio", streamURL: .danceUK, imageName: "danceUK")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Box UK Radio", streamURL: .boxUK, imageName: "boxUK")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Sound Fusion Radio", streamURL: .soundFusion, imageName: "soundFusion")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Country 105 FM", streamURL: .countryRadio, imageName: "countryRadio")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Americas Country", streamURL: .americasCountry, imageName: "americasCountry")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Pure 90s Radio", streamURL: .pure90sRadio, imageName: "pure90s")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Venice Classic Radio Italia", streamURL: .veniceClassicItalia, imageName: "veniceClassic")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Austin Blues Radio", streamURL: .austinBluesRadio, imageName: "austinBlues")),
-            RadioStationPlayable(radioItem: RadioItem(title: "PowerPlay Kawaii", streamURL: .asiaDream, imageName: "asiaDream")),
-            RadioStationPlayable(radioItem: RadioItem(title: "J-Pop Project Radio", streamURL: .jpopproject, imageName: "jpopproject")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Drum'n'Bass", streamURL: .rrDrumAndBass, imageName: "radioRecord")),
-            RadioStationPlayable(radioItem: RadioItem(title: "DFM Pop Dance", streamURL: .dfmPopDance, imageName: "dfmPopDance")),
-            RadioStationPlayable(radioItem: RadioItem(title: "DFM Russian Dance", streamURL: .dfmRussianDance, imageName: "russianDance")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Radio Records Russian Hits", streamURL: .rrRussianHits, imageName: "rrRussianHits")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Radio Records EDM Hits", streamURL: .rrEDMHits, imageName: "rrEdmHits")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Bat Yam 89.1 FM", streamURL: .batYamRadioRus, imageName: "batYamRussian")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Radio Records Russian Gold", streamURL: .rrRussianGold, imageName: "rrRussianGold")),
-            RadioStationPlayable(radioItem: RadioItem(title: "DnB My Radio", streamURL: .dnbMyRadio, imageName: "dnbMyRadio")),
-            RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Future House", streamURL: .rrFutureHouse, imageName: "rrFutureHouse"))
-        ]
+class RadioItems : ObservableObject, RadioItemListDelegate {
+    init() {
+        self.values = [
+            RadioStationPlayable(radioItem: RadioItem(title: "Dance UK Radio", streamURL: .danceUK, imageName: "danceUK"), delegate: self, itemStatesInList: .First),
+            RadioStationPlayable(radioItem: RadioItem(title: "Box UK Radio", streamURL: .boxUK, imageName: "boxUK"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Sound Fusion Radio", streamURL: .soundFusion, imageName: "soundFusion"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Country 105 FM", streamURL: .countryRadio, imageName: "countryRadio"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Americas Country", streamURL: .americasCountry, imageName: "americasCountry"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Pure 90s Radio", streamURL: .pure90sRadio, imageName: "pure90s"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Venice Classic Radio Italia", streamURL: .veniceClassicItalia, imageName: "veniceClassic"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Austin Blues Radio", streamURL: .austinBluesRadio, imageName: "austinBlues"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "PowerPlay Kawaii", streamURL: .asiaDream, imageName: "asiaDream"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "J-Pop Project Radio", streamURL: .jpopproject, imageName: "jpopproject"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Drum'n'Bass", streamURL: .rrDrumAndBass, imageName: "radioRecord"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "DFM Pop Dance", streamURL: .dfmPopDance, imageName: "dfmPopDance"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "DFM Russian Dance", streamURL: .dfmRussianDance, imageName: "russianDance"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Radio Records Russian Hits", streamURL: .rrRussianHits, imageName: "rrRussianHits"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Radio Records EDM Hits", streamURL: .rrEDMHits, imageName: "rrEdmHits"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Bat Yam 89.1 FM", streamURL: .batYamRadioRus, imageName: "batYamRussian"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Radio Records Russian Gold", streamURL: .rrRussianGold, imageName: "rrRussianGold"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "DnB My Radio", streamURL: .dnbMyRadio, imageName: "dnbMyRadio"), delegate: self),
+            RadioStationPlayable(radioItem: RadioItem(title: "Radio Record Future House", streamURL: .rrFutureHouse, imageName: "rrFutureHouse"), delegate: self, itemStatesInList: .Last)
+                ]
+    }
+   @Published var values: [RadioStationPlayable] =  [RadioStationPlayable]()
+    
+    @Published var currentStationIndex: Int = 0
     
     
+    func previousStation() {
+        guard self.currentStationIndex > 0 else {
+            return
+        }
+        self.values[self.currentStationIndex].isPlaying = false
+        self.currentStationIndex -= 1
+        self.values[self.currentStationIndex].isPlaying = true
+    }
+    
+    func nextStation() {
+        guard self.currentStationIndex < self.values.count - 1 else  {
+            return
+        }
+        self.values[self.currentStationIndex].isPlaying = false
+        self.currentStationIndex += 1
+        self.values[self.currentStationIndex].isPlaying = true
+    }
 }
 
 
+protocol RadioItemListDelegate {
+    func previousStation()
+    func nextStation()
+}

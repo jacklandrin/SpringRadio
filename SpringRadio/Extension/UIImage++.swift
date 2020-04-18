@@ -3,9 +3,9 @@ import UIKit
 
 extension UIImage {
 
-    func resized(to size : CGSize) -> UIImage {
+    func resized(to size : CGSize, scale: CGFloat = 1) -> UIImage {
         let format = UIGraphicsImageRendererFormat()
-        format.scale = 1
+        format.scale = scale
         //disable HDR:
         format.preferredRange = .standard
         let renderer = UIGraphicsImageRenderer(size: size, format: format)
