@@ -5,61 +5,18 @@
 //  Created by jack on 2020/4/7.
 //  Copyright © 2020 jack. All rights reserved.
 //
-
-import AVFoundation
-import AVKit
+import Foundation
 import MediaPlayer
 
-class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
+protocol AudioPlayer {
+    var currentAudioStation:Playable? {get set}
+    var updateSpectrum:(([[Float]]) -> Void)? { get set }
+    var analyzer:RealtimeAnalyzer {get set}
+    func play<T:Playable>(stream item: T?)
+    func stop()
+}
 
-    static let shared = PlayerManager()
-    var audioPlayer: AVPlayer?
-    var playerItem: AVPlayerItem?
-    var currentAudioStation:Playable? = nil
-
-    
-    private override init() {
-        super.init()
-        self.setupRemoteCommandCenter()
-    }
-    
-    // MARK: - Private
-        
-    // MARK: - Player
-    
-    func play<T:Playable>(stream item: T?) {
-        
-        guard let stream = item?.radioItem.streamURL, let url = URL(string: stream.rawValue) else {
-            fatalError("=========== Can`t play stream ===========")
-        }
-        
-        if let station = self.currentAudioStation  {
-            if station.radioItem.streamURL != item?.radioItem.streamURL {
-                self.currentAudioStation?.isPlaying = false
-                self.currentAudioStation?.streamTitle = defaultStreamTitle
-            }
-        }
-        
-        self.currentAudioStation = item
-        
-        self.audioPlayer?.stop()
-        
-        let asset = AVAsset(url: url)
-        
-        self.playerItem = AVPlayerItem(asset: asset)
-        self.audioPlayer = AVPlayer(playerItem: playerItem)
-        self.audioPlayer?.play()
-        setupNowPlaying()
-        
-        
-        let metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
-        metadataOutput.setDelegate(self, queue: .main)
-        self.playerItem?.add(metadataOutput)
-
-    }
-    
-
-    
+extension AudioPlayer {
     func setupNowPlaying() {
         // Define Now Playing Info
         var nowPlayingInfo = [String : Any]()
@@ -85,7 +42,8 @@ class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
         }
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.pauseCommand.addTarget {event in
-            self.currentAudioStation?.isPlaying = false
+            var station = self.currentAudioStation
+            station?.isPlaying = false
             return .success
         }
         commandCenter.nextTrackCommand.isEnabled = self.currentAudioStation?.itemStatesInList == .Last ? false : true
@@ -101,23 +59,7 @@ class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
             
         }
     }
-    
-    func metadataOutput(_ output: AVPlayerItemMetadataOutput, didOutputTimedMetadataGroups groups: [AVTimedMetadataGroup], from track: AVPlayerItemTrack?) {
-        guard let item = groups.first?.items.first, let title = item.value(forKeyPath: "value") as? String else {
-            let currentStationTitle = self.currentAudioStation?.radioItem.title ?? ""
-            self.currentAudioStation?.streamTitle = currentStationTitle
-            return
-        }
-        self.currentAudioStation?.streamTitle = title
-    }
-    
 }
 
 
-extension AVPlayer {
-    
-    func stop() {
-        self.seek(to: CMTime.zero)
-        self.pause()
-    }
-}
+

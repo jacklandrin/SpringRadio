@@ -26,6 +26,33 @@
 		CC3961C6243CF080002420EE /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3961C3243CF080002420EE /* UIColor++.swift */; };
 		CC3961C8243CFD21002420EE /* StationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3961C7243CFD21002420EE /* StationDetail.swift */; };
 		CC414CDA243B9A8200F78AD4 /* RadioStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC414CD9243B9A8200F78AD4 /* RadioStationViewModel.swift */; };
+		CCA243F1244C4E9B00B22346 /* JLAVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243F0244C4E9B00B22346 /* JLAVAudioPlayer.swift */; };
+		CCA243F3244C549200B22346 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243F2244C549200B22346 /* PlayerManager.swift */; };
+		CCA243F9244C5E7D00B22346 /* JLASAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243F8244C5E7D00B22346 /* JLASAudioPlayer.swift */; };
+		CCA24414244C6AEC00B22346 /* StreamingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243FE244C6AEC00B22346 /* StreamingDelegate.swift */; };
+		CCA24415244C6AEC00B22346 /* Streaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243FF244C6AEC00B22346 /* Streaming.swift */; };
+		CCA24416244C6AEC00B22346 /* Streamer+DownloadableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24400244C6AEC00B22346 /* Streamer+DownloadableDelegate.swift */; };
+		CCA24417244C6AEC00B22346 /* StreamingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24401244C6AEC00B22346 /* StreamingState.swift */; };
+		CCA24418244C6AEC00B22346 /* Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24402244C6AEC00B22346 /* Streamer.swift */; };
+		CCA24419244C6AEC00B22346 /* Parser+PropertyListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24404244C6AEC00B22346 /* Parser+PropertyListener.swift */; };
+		CCA2441A244C6AEC00B22346 /* ParserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24405244C6AEC00B22346 /* ParserError.swift */; };
+		CCA2441B244C6AEC00B22346 /* Parser+Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24406244C6AEC00B22346 /* Parser+Packets.swift */; };
+		CCA2441C244C6AEC00B22346 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24407244C6AEC00B22346 /* Parsing.swift */; };
+		CCA2441D244C6AEC00B22346 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24408244C6AEC00B22346 /* Parser.swift */; };
+		CCA2441E244C6AEC00B22346 /* Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2440A244C6AEC00B22346 /* Reader.swift */; };
+		CCA2441F244C6AEC00B22346 /* Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2440B244C6AEC00B22346 /* Reading.swift */; };
+		CCA24420244C6AEC00B22346 /* ReaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2440C244C6AEC00B22346 /* ReaderError.swift */; };
+		CCA24421244C6AEC00B22346 /* Reader+Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2440D244C6AEC00B22346 /* Reader+Converter.swift */; };
+		CCA24422244C6AEC00B22346 /* Downloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2440F244C6AEC00B22346 /* Downloading.swift */; };
+		CCA24423244C6AEC00B22346 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24410244C6AEC00B22346 /* Downloader.swift */; };
+		CCA24424244C6AEC00B22346 /* Downloader+URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24411244C6AEC00B22346 /* Downloader+URLSessionDelegate.swift */; };
+		CCA24425244C6AEC00B22346 /* DownloadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24412244C6AEC00B22346 /* DownloadingState.swift */; };
+		CCA24426244C6AEC00B22346 /* DownloadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24413244C6AEC00B22346 /* DownloadingDelegate.swift */; };
+		CCA2442B244C6B0300B22346 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24429244C6B0300B22346 /* SpectrumView.swift */; };
+		CCA2442C244C6B0300B22346 /* RealtimeAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2442A244C6B0300B22346 /* RealtimeAnalyzer.swift */; };
+		CCA2442E244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2442D244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift */; };
+		CCA24430244C715B00B22346 /* SoundWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2442F244C715B00B22346 /* SoundWaveView.swift */; };
+		CCA24432244C749100B22346 /* SoundWaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24431244C749100B22346 /* SoundWaveModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +98,33 @@
 		CC3961C3243CF080002420EE /* UIColor++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
 		CC3961C7243CFD21002420EE /* StationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetail.swift; sourceTree = "<group>"; };
 		CC414CD9243B9A8200F78AD4 /* RadioStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioStationViewModel.swift; sourceTree = "<group>"; };
+		CCA243F0244C4E9B00B22346 /* JLAVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLAVAudioPlayer.swift; sourceTree = "<group>"; };
+		CCA243F2244C549200B22346 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		CCA243F8244C5E7D00B22346 /* JLASAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLASAudioPlayer.swift; sourceTree = "<group>"; };
+		CCA243FE244C6AEC00B22346 /* StreamingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamingDelegate.swift; sourceTree = "<group>"; };
+		CCA243FF244C6AEC00B22346 /* Streaming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streaming.swift; sourceTree = "<group>"; };
+		CCA24400244C6AEC00B22346 /* Streamer+DownloadableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Streamer+DownloadableDelegate.swift"; sourceTree = "<group>"; };
+		CCA24401244C6AEC00B22346 /* StreamingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamingState.swift; sourceTree = "<group>"; };
+		CCA24402244C6AEC00B22346 /* Streamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Streamer.swift; sourceTree = "<group>"; };
+		CCA24404244C6AEC00B22346 /* Parser+PropertyListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+PropertyListener.swift"; sourceTree = "<group>"; };
+		CCA24405244C6AEC00B22346 /* ParserError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserError.swift; sourceTree = "<group>"; };
+		CCA24406244C6AEC00B22346 /* Parser+Packets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parser+Packets.swift"; sourceTree = "<group>"; };
+		CCA24407244C6AEC00B22346 /* Parsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
+		CCA24408244C6AEC00B22346 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		CCA2440A244C6AEC00B22346 /* Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
+		CCA2440B244C6AEC00B22346 /* Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reading.swift; sourceTree = "<group>"; };
+		CCA2440C244C6AEC00B22346 /* ReaderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReaderError.swift; sourceTree = "<group>"; };
+		CCA2440D244C6AEC00B22346 /* Reader+Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reader+Converter.swift"; sourceTree = "<group>"; };
+		CCA2440F244C6AEC00B22346 /* Downloading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloading.swift; sourceTree = "<group>"; };
+		CCA24410244C6AEC00B22346 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		CCA24411244C6AEC00B22346 /* Downloader+URLSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Downloader+URLSessionDelegate.swift"; sourceTree = "<group>"; };
+		CCA24412244C6AEC00B22346 /* DownloadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingState.swift; sourceTree = "<group>"; };
+		CCA24413244C6AEC00B22346 /* DownloadingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingDelegate.swift; sourceTree = "<group>"; };
+		CCA24429244C6B0300B22346 /* SpectrumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
+		CCA2442A244C6B0300B22346 /* RealtimeAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealtimeAnalyzer.swift; sourceTree = "<group>"; };
+		CCA2442D244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JLASAudioPlayer+Streamer.swift"; sourceTree = "<group>"; };
+		CCA2442F244C715B00B22346 /* SoundWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveView.swift; sourceTree = "<group>"; };
+		CCA24431244C749100B22346 /* SoundWaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +175,7 @@
 		CC173F6A2439A1F600ECF53C /* SpringRadio */ = {
 			isa = PBXGroup;
 			children = (
+				CCA24428244C6B0300B22346 /* AudioSpectrum */,
 				CC3961BE243CE70B002420EE /* Extension */,
 				CC3961BB243CCFB3002420EE /* Player */,
 				CC36765D243C529F0056B34F /* Views */,
@@ -169,6 +224,7 @@
 				CC367660243C61170056B34F /* MiniPlayerControl.swift */,
 				CC367662243C632E0056B34F /* TrapezoidParameters.swift */,
 				CC3961C7243CFD21002420EE /* StationDetail.swift */,
+				CCA2442F244C715B00B22346 /* SoundWaveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,7 +232,12 @@
 		CC3961BB243CCFB3002420EE /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				CCA243FC244C6AEC00B22346 /* AudioStreamer */,
 				CC3961BC243CD07A002420EE /* AudioPlayer.swift */,
+				CCA243F2244C549200B22346 /* PlayerManager.swift */,
+				CCA243F0244C4E9B00B22346 /* JLAVAudioPlayer.swift */,
+				CCA243F8244C5E7D00B22346 /* JLASAudioPlayer.swift */,
+				CCA2442D244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -197,8 +258,76 @@
 			children = (
 				CC414CD9243B9A8200F78AD4 /* RadioStationViewModel.swift */,
 				CC0CCB1A243DABCB000AF2FC /* FloatTextViewModel.swift */,
+				CCA24431244C749100B22346 /* SoundWaveModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CCA243FC244C6AEC00B22346 /* AudioStreamer */ = {
+			isa = PBXGroup;
+			children = (
+				CCA243FD244C6AEC00B22346 /* Stream */,
+				CCA24403244C6AEC00B22346 /* Parse */,
+				CCA24409244C6AEC00B22346 /* Read */,
+				CCA2440E244C6AEC00B22346 /* Download */,
+			);
+			path = AudioStreamer;
+			sourceTree = "<group>";
+		};
+		CCA243FD244C6AEC00B22346 /* Stream */ = {
+			isa = PBXGroup;
+			children = (
+				CCA243FE244C6AEC00B22346 /* StreamingDelegate.swift */,
+				CCA243FF244C6AEC00B22346 /* Streaming.swift */,
+				CCA24400244C6AEC00B22346 /* Streamer+DownloadableDelegate.swift */,
+				CCA24401244C6AEC00B22346 /* StreamingState.swift */,
+				CCA24402244C6AEC00B22346 /* Streamer.swift */,
+			);
+			path = Stream;
+			sourceTree = "<group>";
+		};
+		CCA24403244C6AEC00B22346 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				CCA24404244C6AEC00B22346 /* Parser+PropertyListener.swift */,
+				CCA24405244C6AEC00B22346 /* ParserError.swift */,
+				CCA24406244C6AEC00B22346 /* Parser+Packets.swift */,
+				CCA24407244C6AEC00B22346 /* Parsing.swift */,
+				CCA24408244C6AEC00B22346 /* Parser.swift */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		CCA24409244C6AEC00B22346 /* Read */ = {
+			isa = PBXGroup;
+			children = (
+				CCA2440A244C6AEC00B22346 /* Reader.swift */,
+				CCA2440B244C6AEC00B22346 /* Reading.swift */,
+				CCA2440C244C6AEC00B22346 /* ReaderError.swift */,
+				CCA2440D244C6AEC00B22346 /* Reader+Converter.swift */,
+			);
+			path = Read;
+			sourceTree = "<group>";
+		};
+		CCA2440E244C6AEC00B22346 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				CCA2440F244C6AEC00B22346 /* Downloading.swift */,
+				CCA24410244C6AEC00B22346 /* Downloader.swift */,
+				CCA24411244C6AEC00B22346 /* Downloader+URLSessionDelegate.swift */,
+				CCA24412244C6AEC00B22346 /* DownloadingState.swift */,
+				CCA24413244C6AEC00B22346 /* DownloadingDelegate.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		CCA24428244C6B0300B22346 /* AudioSpectrum */ = {
+			isa = PBXGroup;
+			children = (
+				CCA24429244C6B0300B22346 /* SpectrumView.swift */,
+				CCA2442A244C6B0300B22346 /* RealtimeAnalyzer.swift */,
+			);
+			path = AudioSpectrum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,19 +461,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA2442B244C6B0300B22346 /* SpectrumView.swift in Sources */,
+				CCA2441C244C6AEC00B22346 /* Parsing.swift in Sources */,
 				CC0CCB1B243DABCB000AF2FC /* FloatTextViewModel.swift in Sources */,
+				CCA24422244C6AEC00B22346 /* Downloading.swift in Sources */,
 				CC36765F243C52CF0056B34F /* StationCell.swift in Sources */,
+				CCA243F1244C4E9B00B22346 /* JLAVAudioPlayer.swift in Sources */,
+				CCA24416244C6AEC00B22346 /* Streamer+DownloadableDelegate.swift in Sources */,
+				CCA24432244C749100B22346 /* SoundWaveModel.swift in Sources */,
+				CCA243F9244C5E7D00B22346 /* JLASAudioPlayer.swift in Sources */,
+				CCA24417244C6AEC00B22346 /* StreamingState.swift in Sources */,
 				CC173F6C2439A1F600ECF53C /* AppDelegate.swift in Sources */,
+				CCA24419244C6AEC00B22346 /* Parser+PropertyListener.swift in Sources */,
 				CC367663243C632E0056B34F /* TrapezoidParameters.swift in Sources */,
+				CCA24423244C6AEC00B22346 /* Downloader.swift in Sources */,
+				CCA24418244C6AEC00B22346 /* Streamer.swift in Sources */,
+				CCA24425244C6AEC00B22346 /* DownloadingState.swift in Sources */,
+				CCA2441F244C6AEC00B22346 /* Reading.swift in Sources */,
+				CCA243F3244C549200B22346 /* PlayerManager.swift in Sources */,
 				CC3961BD243CD07A002420EE /* AudioPlayer.swift in Sources */,
+				CCA2442E244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift in Sources */,
+				CCA24426244C6AEC00B22346 /* DownloadingDelegate.swift in Sources */,
 				CC173F6E2439A1F600ECF53C /* SceneDelegate.swift in Sources */,
+				CCA24430244C715B00B22346 /* SoundWaveView.swift in Sources */,
+				CCA2441E244C6AEC00B22346 /* Reader.swift in Sources */,
 				CC3961C6243CF080002420EE /* UIColor++.swift in Sources */,
 				CC367661243C61170056B34F /* MiniPlayerControl.swift in Sources */,
+				CCA2441B244C6AEC00B22346 /* Parser+Packets.swift in Sources */,
 				CC3961C8243CFD21002420EE /* StationDetail.swift in Sources */,
 				CC173F702439A1F600ECF53C /* StationListView.swift in Sources */,
+				CCA24420244C6AEC00B22346 /* ReaderError.swift in Sources */,
+				CCA24414244C6AEC00B22346 /* StreamingDelegate.swift in Sources */,
 				CC3961C5243CF080002420EE /* KMeansClusterer.swift in Sources */,
+				CCA24421244C6AEC00B22346 /* Reader+Converter.swift in Sources */,
+				CCA2442C244C6B0300B22346 /* RealtimeAnalyzer.swift in Sources */,
+				CCA2441A244C6AEC00B22346 /* ParserError.swift in Sources */,
 				CC167395243F43AD002B8CAB /* TextSizeFit.swift in Sources */,
+				CCA2441D244C6AEC00B22346 /* Parser.swift in Sources */,
 				CC3961C4243CF080002420EE /* UIImage++.swift in Sources */,
+				CCA24415244C6AEC00B22346 /* Streaming.swift in Sources */,
+				CCA24424244C6AEC00B22346 /* Downloader+URLSessionDelegate.swift in Sources */,
 				CC414CDA243B9A8200F78AD4 /* RadioStationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

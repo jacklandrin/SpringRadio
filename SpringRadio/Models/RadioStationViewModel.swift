@@ -27,13 +27,13 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     {
         didSet {
             if isPlaying {
-                PlayerManager.shared.play(stream: self)
+                PlayerManager.shared.player.play(stream: self)
                 if self.themeColor == .yellow {
                      self.seizeColorInImage(imageName: self.radioItem.imageName, defaultColor: .yellow)
                 }
                 print("play")
             }  else {
-                PlayerManager.shared.audioPlayer?.stop()
+               PlayerManager.shared.player.stop()
                 print("stop")
             }
             objectWillChange.send()

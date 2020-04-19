@@ -11,9 +11,15 @@ import SwiftUI
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
+    @ObservedObject var soundWave:SoundWaveModel = SoundWaveModel()
 //    @State var imageEdge:CGFloat = screenWidth * 0.5
     let floatTitleFontSize: CGFloat = 85.0
     let streamTitleFontSize: CGFloat = 50.0
+    let maxImageEdge:CGFloat = 300.0
+    let leftColors = [UIColor(red: 235/255, green: 2/255, blue: 119/255, alpha: 0.8).cgColor,
+                      UIColor(red: 253/255, green: 229/255, blue: 241/255, alpha: 0.7).cgColor]
+    let rightColors = [UIColor(red: 39/255, green: 133/255, blue: 195/255, alpha: 0.8).cgColor,
+                       UIColor(red: 253/255, green: 229/255, blue: 241/255, alpha: 0.7).cgColor]
     
     var floatTitleText: some View {
         Text(self.currentItem.radioItem.title)
@@ -62,23 +68,28 @@ struct StationDetail: View {
         screenWidth = g.frame(in: .global).width
         screenHeight = g.frame(in: .global).height
         let mainStack = ZStack {
+            VStack {
+                Spacer()
                 Image(self.currentItem.radioItem.imageName)
-                .resizable()
-                    .frame(width:screenWidth / 2, height: screenWidth / 2)
-                .scaledToFit()
-                .shadow(radius: 5)
+                    .resizable()
+                    .frame(width:imageEdge(), height:imageEdge())
+                    .scaledToFit()
+                    .shadow(radius: 5)
                     .padding(.bottom, 150)
-                VStack(alignment:.leading){
-                    GeometryReader { geometry in
-                        self.makeFloatTitleText(geometry)
-                    }
+                Spacer()
+                SoundWaveView(spectra: self.soundWave.spectra, barWidth: self.soundWave.barWidth, space: self.soundWave.space, leftColor: leftColors, rightColor: rightColors).frame(width: screenWidth, height:150).blur(radius: 7.5)
+            }
+            VStack(alignment:.leading){
+                GeometryReader { geometry in
+                    self.makeFloatTitleText(geometry)
+                }
 
-                    GeometryReader { geometry in
-                        self.makeFloatStreamTitleText(geometry)
-                    }
-                    Spacer()
-                    }.clipped()
-                    .opacity(0.90)
+                GeometryReader { geometry in
+                    self.makeFloatStreamTitleText(geometry)
+                }
+                Spacer()
+                }.clipped()
+                .opacity(0.90)
             }.edgesIgnoringSafeArea(.all)
             return mainStack
     }
@@ -93,6 +104,15 @@ struct StationDetail: View {
     func makeFloatStreamTitleText(_ geometry: GeometryProxy) -> some View {
         self.floatText.streamTitleWidth = UILabel.calculationTextWidth(text: self.currentItem.streamTitle, fontSize: streamTitleFontSize)//geometry.size.width
         return self.floatStreamText.frame(width:self.floatText.streamTitleWidth).brightness(0.05)
+    }
+    
+    func imageEdge() -> CGFloat {
+        let edge = screenWidth / 2
+        if edge > maxImageEdge{
+            return maxImageEdge
+        } else {
+            return edge
+        }
     }
 }
 
