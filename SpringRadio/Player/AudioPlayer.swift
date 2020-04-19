@@ -11,12 +11,12 @@ import AVKit
 import MediaPlayer
 
 class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
-    
+
     static let shared = PlayerManager()
     var audioPlayer: AVPlayer?
     var playerItem: AVPlayerItem?
     var currentAudioStation:Playable? = nil
-    
+
     
     private override init() {
         super.init()
@@ -43,11 +43,13 @@ class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
         self.currentAudioStation = item
         
         self.audioPlayer?.stop()
-        self.playerItem = AVPlayerItem(url: url)
+        
+        let asset = AVAsset(url: url)
+        
+        self.playerItem = AVPlayerItem(asset: asset)
         self.audioPlayer = AVPlayer(playerItem: playerItem)
         self.audioPlayer?.play()
         setupNowPlaying()
-        
         
         
         let metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
@@ -56,6 +58,7 @@ class PlayerManager:NSObject, AVPlayerItemMetadataOutputPushDelegate {
 
     }
     
+
     
     func setupNowPlaying() {
         // Define Now Playing Info

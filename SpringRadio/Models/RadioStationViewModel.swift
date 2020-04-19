@@ -148,7 +148,7 @@ enum ItemStatesInList {
 }
 
 enum RadioURL: String {
-    case danceUK = "http://uk2.internet-radio.com:8024/listen.pls"
+    case danceUK = "http://uk2.internet-radio.com:8024/stream"
     case boxUK = "http://51.75.170.46:6191/stream"
     case rrDrumAndBass = "http://air2.radiorecord.ru:9003/drumhits_320"
     case dfmPopDance = "https://dfm-popdance.hostingradio.ru/popdance96.aacp"
@@ -161,12 +161,12 @@ enum RadioURL: String {
     case rrRussianHits = "http://air2.radiorecord.ru:9003/russianhits_320"
     case rrEDMHits = "http://air2.radiorecord.ru:9003/edmhits_320"
     case rrFutureHouse = "http://air2.radiorecord.ru:9003/fut_320"
-    case veniceClassicItalia = "http://174.36.206.197:8000/listen.pls?sid=1"
-    case austinBluesRadio = "http://ca10.rcast.net:8036/listen.pls?sid=1"
-    case soundFusion = "http://uk6.internet-radio.com:8346/listen.pls"
-    case asiaDream = "http://66.70.187.44:9029/listen.pls?sid=1"
-    case jpopproject = "http://184.75.223.178:8083/listen.pls?sid=1"
-    case pure90sRadio = "http://185.105.4.100:8183/listen.pls?sid=1"
+    case veniceClassicItalia = "http://174.36.206.197:8000/stream"
+    case austinBluesRadio = "http://ca10.rcast.net:8036/stream"
+    case soundFusion = "http://uk6.internet-radio.com:8346/stream"
+    case asiaDream = "http://66.70.187.44:9029/stream"
+    case jpopproject = "http://184.75.223.178:8083/stream"
+    case pure90sRadio = "http://185.105.4.100:8183/stream"
 }
 
 class RadioItems : ObservableObject, RadioItemListDelegate {
