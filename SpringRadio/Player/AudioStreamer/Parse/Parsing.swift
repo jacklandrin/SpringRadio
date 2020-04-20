@@ -24,7 +24,7 @@ public protocol Parsing: class {
     var isParsingComplete: Bool { get }
     
     /// An array of duples, each index presenting a parsed audio packet. For compressed formats each packet of data should contain a `AudioStreamPacketDescription`, which describes the start offset and length of the audio data)
-    var packets: [(Data, AudioStreamPacketDescription?)] { get }
+    var packets: [(Data, AudioStreamPacketDescription?)] { get set }
     
     /// The total number of frames (expressed in the data format)
     var totalFrameCount: AVAudioFrameCount? { get }

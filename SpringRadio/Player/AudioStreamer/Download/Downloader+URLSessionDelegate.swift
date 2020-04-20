@@ -18,7 +18,7 @@ extension Downloader: URLSessionDataDelegate {
     }
 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-//        os_log("%@ - %d", log: Downloader.logger, type: .debug, #function, #line, data.count)
+        os_log("%@ - %d", log: Downloader.logger, type: .debug, #function, #line, data.count)
         let response = dataTask.response
 //        print("\(String(describing: response?.mimeType))")
         if response?.mimeType == "audio/x-scpls" {
@@ -28,6 +28,8 @@ extension Downloader: URLSessionDataDelegate {
             progress = Float(totalBytesReceived) / Float(totalBytesCount)
             delegate?.download(self, didReceiveData: data, progress: progress)
             progressHandler?(data, progress)
+        } else  {
+            print("other response:\(String(describing: response))")
         }
         
     }

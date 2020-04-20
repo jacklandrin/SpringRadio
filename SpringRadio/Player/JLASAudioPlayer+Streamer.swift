@@ -12,7 +12,13 @@ import AVFoundation
 extension JLASAudioPlayer : StreamingDelegate {
     
     func streamer(_ streamer: Streaming, failedDownloadWithError error: Error, forURL url: URL) {
-        self.audioPlayer.stop()
+        if url == self.audioPlayer.url && self.currentAudioStation!.isPlaying {
+            self.audioPlayer.play()
+        } else {
+            if error.localizedDescription != "cancelled" {
+                self.audioPlayer.stop()
+            }
+        }
     }
     
     func streamer(_ streamer: Streaming, updatedDownloadProgress progress: Float, forURL url: URL) {
@@ -45,3 +51,4 @@ extension JLASAudioPlayer : StreamingDelegate {
     
     
 }
+

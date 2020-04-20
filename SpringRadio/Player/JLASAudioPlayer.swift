@@ -10,9 +10,9 @@ import AVFoundation
 import AVKit
 import MediaPlayer
 
-let bufferSize = 8192
+let bufferSize = 512
 
-class JLASAudioPlayer: NSObject, AudioPlayer {
+class JLASAudioPlayer: NSObject, AudioPlayer, AVPlayerItemMetadataOutputPushDelegate {
     let queue = DispatchQueue(label: "com.springRadio.spectrum")
     lazy var audioPlayer: Streamer = {
         let audioPlayer = Streamer()
@@ -22,7 +22,7 @@ class JLASAudioPlayer: NSObject, AudioPlayer {
     var currentAudioStation: Playable?
     var updateSpectrum: (([[Float]]) -> Void)?
     var analyzer:RealtimeAnalyzer = RealtimeAnalyzer(fftSize: bufferSize)
-    
+    private var avplayer: AVPlayer = AVPlayer()
     
     override init() {
         super.init()
@@ -42,15 +42,40 @@ class JLASAudioPlayer: NSObject, AudioPlayer {
                }
                
                self.currentAudioStation = item
+        
+        
+        setAVPlayer(url: url)
         audioPlayer.url = url
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             self?.audioPlayer.play()
         }
         
+       
+        self.setupNowPlaying()
+    }
+    
+    func setAVPlayer(url:URL)  {
+        let playerItem = AVPlayerItem(url: url)
+        self.avplayer = AVPlayer(playerItem: playerItem)
+        let metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
+        metadataOutput.setDelegate(self, queue: .main)
+        playerItem.add(metadataOutput)
+        self.avplayer.play()
+        self.avplayer.isMuted = true
+    }
+    
+    func metadataOutput(_ output: AVPlayerItemMetadataOutput, didOutputTimedMetadataGroups groups: [AVTimedMetadataGroup], from track: AVPlayerItemTrack?) {
+        guard let item = groups.first?.items.first, let title = item.value(forKeyPath: "value") as? String else {
+            let currentStationTitle = self.currentAudioStation?.radioItem.title ?? ""
+            self.currentAudioStation?.streamTitle = currentStationTitle
+            return
+        }
+        self.currentAudioStation?.streamTitle = title
     }
     
     func stop() {
         audioPlayer.stop()
+        avplayer.stop()
     }
     
     

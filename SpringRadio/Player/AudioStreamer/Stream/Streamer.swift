@@ -15,7 +15,9 @@ class Streamer: Streaming {
     static let logger = OSLog(subsystem: "com.fastlearner.streamer", category: "Streamer")
 
     // MARK: - Properties (Streaming)
-    
+    var startSampleCount: CMTimeValue = 0
+    var renderedFrameCount: AVAudioFrameCount = 0
+    var commonPCMFormat: AVAudioFormat?
     public var currentTime: TimeInterval? {
         guard let nodeTime = playerNode.lastRenderTime,
             let playerTime = playerNode.playerTime(forNodeTime: nodeTime) else {
@@ -92,6 +94,23 @@ class Streamer: Streaming {
         // Prepare the engine
         engine.prepare()
         
+        
+        engine.mainMixerNode.installTap(onBus: 0, bufferSize: readBufferSize, format: nil, block: {[weak self](buffer, when) in
+            guard let strongSelf = self else { return }
+            buffer.frameLength = AVAudioFrameCount(strongSelf.readBufferSize)
+            strongSelf.delegate!.streamer(strongSelf, updateBuffer: buffer)
+            
+//            let sampleBuffer = strongSelf.convert(buffer: buffer)
+//            guard sampleBuffer == sampleBuffer else {
+//                return
+//            }
+//            let metadataGroup = AVTimedMetadataGroup(sampleBuffer: sampleBuffer!)
+//            let items = metadataGroup?.items
+//            print("group items:\(String(describing: items))")
+        })
+        
+        commonPCMFormat = engine.mainMixerNode.outputFormat(forBus: 0)
+        
         /// Use timer to schedule the buffers (this is not ideal, wish AVAudioEngine provided a pull-model for scheduling buffers)
         let interval = 1 / (readFormat.sampleRate / Double(readBufferSize))
         let timer = Timer(timeInterval: interval / 2, repeats: true) {
@@ -101,8 +120,8 @@ class Streamer: Streaming {
             }
             
             self?.scheduleNextBuffer()
-            self?.handleTimeUpdate()
-            self?.notifyTimeUpdated()
+//            self?.handleTimeUpdate()
+//            self?.notifyTimeUpdated()
         }
         RunLoop.current.add(timer, forMode: .common)
     }
@@ -116,6 +135,57 @@ class Streamer: Streaming {
     open func connectNodes() {
         engine.connect(playerNode, to: engine.mainMixerNode, format: readFormat)
     }
+    
+    
+//    private func convert(buffer: AVAudioPCMBuffer) -> CMSampleBuffer? {
+//        let sampleRate = CMTimeScale(commonPCMFormat!.sampleRate)
+//        var cmFormat: CMAudioFormatDescription?
+//        let presentationTime = startSampleCount + CMTimeValue(renderedFrameCount)
+//
+//        renderedFrameCount += buffer.frameLength
+//
+//        CMAudioFormatDescriptionCreate(allocator: kCFAllocatorDefault,
+//                                       asbd: commonPCMFormat!.streamDescription,
+//                                       layoutSize: 0,
+//                                       layout: nil,
+//                                       magicCookieSize: 0,
+//                                       magicCookie: nil,
+//                                       extensions: nil,
+//                                       formatDescriptionOut: &cmFormat)
+//
+//        var sampleBuffer: CMSampleBuffer?
+//        var timingInfo = CMSampleTimingInfo(duration: CMTime(value: 1, timescale: sampleRate),
+//                                            presentationTimeStamp: CMTime(value: presentationTime, timescale: sampleRate),
+//                                            decodeTimeStamp: .invalid)
+//
+//        CMSampleBufferCreate(allocator: kCFAllocatorDefault,
+//                             dataBuffer: nil,
+//                             dataReady: false,
+//                             makeDataReadyCallback: nil,
+//                             refcon: nil,
+//                             formatDescription: cmFormat,
+//                             sampleCount: CMItemCount(buffer.frameLength),
+//                             sampleTimingEntryCount: 1,
+//                             sampleTimingArray: &timingInfo,
+//                             sampleSizeEntryCount: 0,
+//                             sampleSizeArray: nil,
+//                             sampleBufferOut: &sampleBuffer)
+//
+//        if let sampleBuffer = sampleBuffer {
+//            let status = CMSampleBufferSetDataBufferFromAudioBufferList(sampleBuffer,
+//                                                                        blockBufferAllocator: kCFAllocatorDefault,
+//                                                                        blockBufferMemoryAllocator: kCFAllocatorDefault,
+//                                                                        flags: kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment,
+//                                                                        bufferList: buffer.audioBufferList)
+//            if status != noErr {
+//                assertionFailure()
+//            }
+//
+//            CMSampleBufferSetDataReady(sampleBuffer)
+//        }
+//
+//        return sampleBuffer
+//    }
     
     // MARK: - Reset
     
@@ -269,11 +339,15 @@ class Streamer: Streaming {
             return
         }
 
+        guard (parser?.packets.count)! > Int(readBufferSize) else {
+            return
+        }
+        
         do {
             let nextScheduledBuffer = try reader.read(readBufferSize)
 
             playerNode.scheduleBuffer(nextScheduledBuffer)
-            delegate?.streamer(self, updateBuffer: nextScheduledBuffer.copy() as! AVAudioPCMBuffer)
+            
         } catch ReaderError.reachedEndOfFile {
             os_log("Scheduler reached end of file", log: Streamer.logger, type: .debug)
             isFileSchedulingComplete = true

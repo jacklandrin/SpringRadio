@@ -19,7 +19,7 @@ public class Parser: Parsing {
     // MARK: - Parsing props
     
     public internal(set) var dataFormat: AVAudioFormat?
-    public internal(set) var packets = [(Data, AudioStreamPacketDescription?)]()
+    public var packets = [(Data, AudioStreamPacketDescription?)]()
     public var totalPacketCount: AVAudioPacketCount? {
         guard let _ = dataFormat else {
             return nil

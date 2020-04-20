@@ -53,6 +53,7 @@
 		CCA2442E244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2442D244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift */; };
 		CCA24430244C715B00B22346 /* SoundWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2442F244C715B00B22346 /* SoundWaveView.swift */; };
 		CCA24432244C749100B22346 /* SoundWaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24431244C749100B22346 /* SoundWaveModel.swift */; };
+		CCA24435244D9FD300B22346 /* BluredSoundWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24434244D9FD300B22346 /* BluredSoundWave.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		CCA2442D244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JLASAudioPlayer+Streamer.swift"; sourceTree = "<group>"; };
 		CCA2442F244C715B00B22346 /* SoundWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveView.swift; sourceTree = "<group>"; };
 		CCA24431244C749100B22346 /* SoundWaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveModel.swift; sourceTree = "<group>"; };
+		CCA24434244D9FD300B22346 /* BluredSoundWave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluredSoundWave.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 				CC367662243C632E0056B34F /* TrapezoidParameters.swift */,
 				CC3961C7243CFD21002420EE /* StationDetail.swift */,
 				CCA2442F244C715B00B22346 /* SoundWaveView.swift */,
+				CCA24434244D9FD300B22346 /* BluredSoundWave.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				CCA243F3244C549200B22346 /* PlayerManager.swift in Sources */,
 				CC3961BD243CD07A002420EE /* AudioPlayer.swift in Sources */,
 				CCA2442E244C6E0700B22346 /* JLASAudioPlayer+Streamer.swift in Sources */,
+				CCA24435244D9FD300B22346 /* BluredSoundWave.swift in Sources */,
 				CCA24426244C6AEC00B22346 /* DownloadingDelegate.swift in Sources */,
 				CC173F6E2439A1F600ECF53C /* SceneDelegate.swift in Sources */,
 				CCA24430244C715B00B22346 /* SoundWaveView.swift in Sources */,

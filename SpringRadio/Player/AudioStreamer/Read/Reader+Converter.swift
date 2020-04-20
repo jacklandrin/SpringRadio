@@ -76,5 +76,10 @@ func ReaderConverterCallback(_ converter: AudioConverterRef,
     packetCount.pointee = 1
     reader.currentPacket = reader.currentPacket + 1
     
+    if packetIndex >= 256 {
+           reader.parser.packets.removeSubrange(0...255)
+           reader.currentPacket = 1
+       }
+    
     return noErr;
 }

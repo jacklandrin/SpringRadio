@@ -25,8 +25,8 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     let id = UUID()
     var isPlaying: Bool = false
     {
-        didSet {
-            if isPlaying {
+        willSet {
+            if newValue {
                 PlayerManager.shared.player.play(stream: self)
                 if self.themeColor == .yellow {
                      self.seizeColorInImage(imageName: self.radioItem.imageName, defaultColor: .yellow)
