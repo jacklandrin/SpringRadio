@@ -6,6 +6,7 @@
 ![list](http://www.jacklandrin.com/wp-content/uploads/2020/04/spring_radio_list.gif)
 
 The detail page:
+
 ![animation](http://www.jacklandrin.com/wp-content/uploads/2020/04/spring_radio_detail.gif)
 
 The git address is <https://github.com/jacklandrin/SpringRadio>
