@@ -54,6 +54,7 @@
 		CCA24430244C715B00B22346 /* SoundWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2442F244C715B00B22346 /* SoundWaveView.swift */; };
 		CCA24432244C749100B22346 /* SoundWaveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24431244C749100B22346 /* SoundWaveModel.swift */; };
 		CCA24435244D9FD300B22346 /* BluredSoundWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24434244D9FD300B22346 /* BluredSoundWave.swift */; };
+		CCA24439244EF6BF00B22346 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA24438244EF6BF00B22346 /* HostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		CCA2442F244C715B00B22346 /* SoundWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveView.swift; sourceTree = "<group>"; };
 		CCA24431244C749100B22346 /* SoundWaveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveModel.swift; sourceTree = "<group>"; };
 		CCA24434244D9FD300B22346 /* BluredSoundWave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluredSoundWave.swift; sourceTree = "<group>"; };
+		CCA24438244EF6BF00B22346 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				CC3961C7243CFD21002420EE /* StationDetail.swift */,
 				CCA2442F244C715B00B22346 /* SoundWaveView.swift */,
 				CCA24434244D9FD300B22346 /* BluredSoundWave.swift */,
+				CCA24438244EF6BF00B22346 /* HostViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				CC3961C5243CF080002420EE /* KMeansClusterer.swift in Sources */,
 				CCA24421244C6AEC00B22346 /* Reader+Converter.swift in Sources */,
 				CCA2442C244C6B0300B22346 /* RealtimeAnalyzer.swift in Sources */,
+				CCA24439244EF6BF00B22346 /* HostViewController.swift in Sources */,
 				CCA2441A244C6AEC00B22346 /* ParserError.swift in Sources */,
 				CC167395243F43AD002B8CAB /* TextSizeFit.swift in Sources */,
 				CCA2441D244C6AEC00B22346 /* Parser.swift in Sources */,

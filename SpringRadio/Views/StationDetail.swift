@@ -8,11 +8,14 @@
 
 import SwiftUI
 
+let backButtonPositionY:CGFloat = 130.0
+
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State var backButtonOffsetY: CGFloat = -backButtonPositionY
     
-//    @State var imageEdge:CGFloat = screenWidth * 0.5
     let floatTitleFontSize: CGFloat = 85.0
     let streamTitleFontSize: CGFloat = 50.0
     let maxImageEdge:CGFloat = 300.0
@@ -44,16 +47,35 @@ struct StationDetail: View {
         .scaledToFit()
     }
     
+    var backButton: some View {
+        Button(action: {
+//            self.presentationMode.wrappedValue.dismiss()
+            self.currentItem.pushed = false
+        }) {
+            Image("backbutton")
+                .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
+                .resizable()
+            .shadow(radius: 2)
+                .opacity(0.8)
+            .offset(y: self.backButtonOffsetY)
+        }.frame(width:150, height: 150)
+            .edgesIgnoringSafeArea(.all)
+        
+    }
     
     var body: some View {
         self.currentItem.themeColor.brightness(0.05).edgesIgnoringSafeArea(.all).overlay(
             GeometryReader{ g in
                 self.makeMainStack(g)
             }
-            
-            
-        ).onAppear{
+        )
+        .onAppear{
             self.floatText.startAnimation()
+           
+            withAnimation(Animation.easeOut(duration: 0.6)){
+                self.backButtonOffsetY = 0.0
+            }
+            
         }.onReceive(self.floatText.timer) { n in
             print("timer \(n)")
             self.floatText.startAnimation()
@@ -72,7 +94,7 @@ struct StationDetail: View {
                     .frame(width:imageEdge(), height:imageEdge())
                     .scaledToFit()
                     .shadow(radius: 5)
-                    .padding(.bottom, 150)
+//                    .padding(.bottom, 150)
                 Spacer()
                 BluredSoundWave()
             }
@@ -85,9 +107,14 @@ struct StationDetail: View {
                     self.makeFloatStreamTitleText(geometry)
                 }
                 Spacer()
-                }.clipped()
-                .opacity(0.90)
-            }.edgesIgnoringSafeArea(.all)
+            }.clipped()
+            .opacity(0.90)
+            backButton
+                .position(x:40,y:backButtonPositionY)
+                
+        }.clipped()
+        .edgesIgnoringSafeArea(.all)
+        
             return mainStack
     }
     
@@ -112,7 +139,6 @@ struct StationDetail: View {
         }
     }
 }
-
 
 struct StationDetail_Previews: PreviewProvider {
     static var previews: some View {

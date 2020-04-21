@@ -25,6 +25,8 @@ struct MiniPlayerControl: View {
                 self.isAnimating = true
             }
         }
+       .navigationBarHidden(self.currentItem.pushed)
+       .navigationBarBackButtonHidden(self.currentItem.pushed)
     }
     
     func makeMainStack(g: GeometryProxy) -> some View {
@@ -52,8 +54,9 @@ struct MiniPlayerControl: View {
             VStack {
                 Spacer(minLength: TrapezoidParameters.trapezoidHeight * 0.3)
                 HStack{
-                    NavigationLink(destination: StationDetail().environmentObject( self.currentItem)
-                        .background(self.currentItem.themeColor), isActive:self.$tappedImage.animation()) {
+                    NavigationLink(destination: StationDetail()
+                        .environmentObject(self.currentItem)
+                    , isActive:$currentItem.pushed.animation()) {
                         Image(self.currentItem.radioItem.imageName).renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                             .resizable()
                             .frame( width:60,height:60)
@@ -92,7 +95,8 @@ struct MiniPlayerControl: View {
                 }
                 Spacer()
             }
-        }.offset(y:takeUpDownControl()).animation(.spring())
+       }.offset(y:takeUpDownControl())
+        .animation(.spring())
         return view
     }
     

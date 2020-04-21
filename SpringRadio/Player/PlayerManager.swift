@@ -10,5 +10,5 @@ import Foundation
 
 class PlayerManager {
     static let shared = PlayerManager()
-    var player:AudioPlayer = JLASAudioPlayer()//
+    var player:AudioPlayer = JLASAudioPlayer()
 }

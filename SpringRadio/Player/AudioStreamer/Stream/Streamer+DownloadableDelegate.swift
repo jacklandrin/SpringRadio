@@ -23,6 +23,9 @@ extension Streamer: DownloadingDelegate {
     
     public func download(_ download: Downloading, changedState downloadState: DownloadingState) {
         os_log("%@ - %d [state: %@]", log: Streamer.logger, type: .debug, #function, #line, String(describing: downloadState))
+        if downloadState == .completed {
+            download.start()
+        }
     }
     
     public func download(_ download: Downloading, didReceiveData data: Data, progress: Float) {

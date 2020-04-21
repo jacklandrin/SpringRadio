@@ -26,15 +26,16 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     var isPlaying: Bool = false
     {
         willSet {
+            let currentThread = Thread.current
             if newValue {
                 PlayerManager.shared.player.play(stream: self)
                 if self.themeColor == .yellow {
                      self.seizeColorInImage(imageName: self.radioItem.imageName, defaultColor: .yellow)
                 }
-                print("play")
+                print("play and current thread:\(currentThread)")
             }  else {
                PlayerManager.shared.player.stop()
-                print("stop")
+                print("stop and current thread:\(currentThread)")
             }
             objectWillChange.send()
         }
@@ -64,6 +65,14 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     var sideColor:Color = .white
     {
         willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    var pushed = false
+    {
+        willSet {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "statueBarChanged"), object: nil, userInfo: ["hidden" : newValue])
             objectWillChange.send()
         }
     }
@@ -221,4 +230,22 @@ class RadioItems : ObservableObject, RadioItemListDelegate {
 protocol RadioItemListDelegate {
     func previousStation()
     func nextStation()
+}
+
+class NavigationPopGestionManager: NSObject, UIGestureRecognizerDelegate {
+    var nc:UINavigationController
+    
+    
+    init(nc:UINavigationController) {
+        self.nc = nc
+    }
+    
+    func setGestureRecongizerDelegate() {
+        self.nc.interactivePopGestureRecognizer?.delegate = self
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard gestureRecognizer is UIScreenEdgePanGestureRecognizer else { return true }
+        return nc.viewControllers.count <= 1 ? false : true
+    }
 }

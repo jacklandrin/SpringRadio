@@ -15,6 +15,7 @@ struct StationListView: View {
     @EnvironmentObject var items : RadioItems
     
     var body: some View {
+        
         GeometryReader { g in
             self.makeNavigationView(g: g)
         }
@@ -62,3 +63,5 @@ struct ContentView_Previews: PreviewProvider {
         StationListView().environmentObject(RadioItems())
     }
 }
+
+
