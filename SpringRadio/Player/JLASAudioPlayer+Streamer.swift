@@ -9,6 +9,8 @@
 import Foundation
 import AVFoundation
 
+
+
 extension JLASAudioPlayer : StreamingDelegate {
     
     func streamer(_ streamer: Streaming, failedDownloadWithError error: Error, forURL url: URL) {
@@ -42,8 +44,7 @@ extension JLASAudioPlayer : StreamingDelegate {
         queue.async { [weak self] in
             let spectra = self?.analyzer.analyse(with: buffer)
             DispatchQueue.main.async {
-                guard let strongSelf = self else { return }
-                strongSelf.updateSpectrum?(spectra!)
+                NotificationCenter.default.post(name: spectraNofiticationName, object: spectra!)
             }
         }
         

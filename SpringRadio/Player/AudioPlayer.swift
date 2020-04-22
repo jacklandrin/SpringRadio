@@ -8,9 +8,10 @@
 import Foundation
 import MediaPlayer
 
+let spectraNofiticationName = NSNotification.Name(rawValue: "com.springradio.spectrabuffer")
+
 protocol AudioPlayer {
     var currentAudioStation:Playable? {get set}
-    var updateSpectrum:(([[Float]]) -> Void)? { get set }
     var analyzer:RealtimeAnalyzer {get set}
     func play<T:Playable>(stream item: T?)
     func stop()

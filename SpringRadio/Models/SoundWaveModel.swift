@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 class SoundWaveModel: ObservableObject {
     @Published var spectra: [[Float]] = [[Float]]()
@@ -19,9 +20,10 @@ class SoundWaveModel: ObservableObject {
     }
     
     func setSpectrum(){
-        PlayerManager.shared.player.updateSpectrum = {[weak self] s in
-            self?.spectra = s
-        }
+        NotificationCenter.default.addObserver(forName: spectraNofiticationName, object: nil, queue: .main, using: {[weak self] notification in
+            let spectra = notification.object as! [[Float]]
+            self?.spectra = spectra
+        })
     }
     
     func setBarWidth() {

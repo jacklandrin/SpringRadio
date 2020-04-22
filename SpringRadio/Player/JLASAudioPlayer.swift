@@ -20,8 +20,8 @@ class JLASAudioPlayer: NSObject, AudioPlayer, AVPlayerItemMetadataOutputPushDele
         return audioPlayer
     }()
     var currentAudioStation: Playable?
-    var updateSpectrum: (([[Float]]) -> Void)?
     var analyzer:RealtimeAnalyzer = RealtimeAnalyzer(fftSize: bufferSize)
+    
     private var avplayer: AVPlayer = AVPlayer()
     
     override init() {
