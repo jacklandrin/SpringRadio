@@ -19,6 +19,7 @@ struct RadioItem {
 
 let defaultStreamTitle = "Loading..."
 
+let backButtonPositionY:CGFloat = 100.0
 
 class RadioStationPlayable: Playable, ObservableObject, Identifiable{
 
@@ -51,6 +52,7 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     var streamTitle: String = defaultStreamTitle
     {
         willSet {
+            streamTitleWillChange.send(newValue)
             objectWillChange.send()
         }
     }
@@ -73,6 +75,13 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     {
         willSet {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "statueBarChanged"), object: nil, userInfo: ["hidden" : newValue])
+            objectWillChange.send()
+        }
+    }
+    
+    var backButtonOffsetY: CGFloat = -backButtonPositionY
+    {
+        willSet {
             objectWillChange.send()
         }
     }
@@ -128,6 +137,7 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     
     
     let objectWillChange = ObservableObjectPublisher()
+    let streamTitleWillChange = PassthroughSubject<String, Never>()
 }
 
 

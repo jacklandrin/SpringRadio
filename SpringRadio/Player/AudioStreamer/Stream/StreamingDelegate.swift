@@ -56,4 +56,5 @@ public protocol StreamingDelegate: class {
     ///   - buffer: A `AVAudioPCMBuffer` representing the new duration value.
     func streamer(_ streamer: Streaming, updateBuffer:AVAudioPCMBuffer)
     
+    func streamer(_ streamer: Streaming, downloadComplete url: URL)
 }

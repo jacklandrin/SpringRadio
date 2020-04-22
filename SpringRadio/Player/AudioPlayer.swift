@@ -13,6 +13,7 @@ let spectraNofiticationName = NSNotification.Name(rawValue: "com.springradio.spe
 protocol AudioPlayer {
     var currentAudioStation:Playable? {get set}
     var analyzer:RealtimeAnalyzer {get set}
+    var bufferring : Bool {get set}
     func play<T:Playable>(stream item: T?)
     func stop()
 }

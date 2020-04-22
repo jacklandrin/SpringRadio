@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-let backButtonPositionY:CGFloat = 130.0
 
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State var backButtonOffsetY: CGFloat = -backButtonPositionY
+    
+    var backAction : () -> Void
     
     let floatTitleFontSize: CGFloat = 85.0
     let streamTitleFontSize: CGFloat = 50.0
@@ -28,7 +28,7 @@ struct StationDetail: View {
         .foregroundColor(self.currentItem.sideColor)
         .lineLimit(1)
             .offset(x: self.floatText.titleX, y: self.floatText.titleY)
-            .position(x:self.floatText.orientation == .horizontal ? screenWidth : screenHeight,y:self.floatText.orientation == .horizontal ? 300 : 260)
+            .position(x:self.floatText.orientation == .horizontal ? screenWidth : screenHeight,y:self.floatText.orientation == .horizontal ? 200 : 260)
             .rotationEffect(self.floatText.orientation == .horizontal ? .degrees(0) : .degrees(90))
             .brightness(0.3)
         .scaledToFit()
@@ -48,19 +48,15 @@ struct StationDetail: View {
     }
     
     var backButton: some View {
-        Button(action: {
-//            self.presentationMode.wrappedValue.dismiss()
-            self.currentItem.pushed = false
-        }) {
+        Button(action: self.backAction) {
             Image("backbutton")
                 .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                 .resizable()
             .shadow(radius: 2)
                 .opacity(0.8)
-            .offset(y: self.backButtonOffsetY)
+                .offset(y: self.currentItem.backButtonOffsetY)
         }.frame(width:150, height: 150)
             .edgesIgnoringSafeArea(.all)
-        
     }
     
     var body: some View {
@@ -69,16 +65,17 @@ struct StationDetail: View {
                 self.makeMainStack(g)
             }
         )
-        .onAppear{
-            self.floatText.startAnimation()
-           
-            withAnimation(Animation.easeOut(duration: 0.6)){
-                self.backButtonOffsetY = 0.0
-            }
-            
-        }.onReceive(self.floatText.timer) { n in
+        .onReceive(self.floatText.timer) { n in
             print("timer \(n)")
-            self.floatText.startAnimation()
+            if self.currentItem.pushed {
+                self.floatText.startAnimation()
+            }
+        }
+        .onReceive(self.currentItem.streamTitleWillChange) { newValue in
+            print("streamTitleWillChange:\(newValue)")
+            if self.currentItem.pushed {
+                self.floatText.startAnimation()
+            }
         }
     }
     
@@ -94,7 +91,6 @@ struct StationDetail: View {
                     .frame(width:imageEdge(), height:imageEdge())
                     .scaledToFit()
                     .shadow(radius: 5)
-//                    .padding(.bottom, 150)
                 Spacer()
                 BluredSoundWave()
             }
@@ -115,7 +111,7 @@ struct StationDetail: View {
         }.clipped()
         .edgesIgnoringSafeArea(.all)
         
-            return mainStack
+        return mainStack
     }
     
     func makeFloatTitleText(_ geometry:GeometryProxy) -> some View {
@@ -142,6 +138,6 @@ struct StationDetail: View {
 
 struct StationDetail_Previews: PreviewProvider {
     static var previews: some View {
-        StationDetail().environmentObject(RadioStationPlayable.radionStationExample())
+        StationDetail(backAction: {}).environmentObject(RadioStationPlayable.radionStationExample())
     }
 }

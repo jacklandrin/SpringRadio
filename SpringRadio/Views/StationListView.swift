@@ -11,8 +11,21 @@ import AVFoundation
 
 struct StationListView: View {
     
-//    @State var currentStationIndex : Int = 0
     @EnvironmentObject var items : RadioItems
+    @State var detailOffsetX : CGFloat = 0.0
+    @State var isShowDetail:Bool = false
+    {
+        didSet {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                withAnimation(Animation.easeOut(duration: 0.6)) {
+                    self.currentItem().backButtonOffsetY = self.isShowDetail ? 0 : -backButtonPositionY
+                }
+            })
+            self.currentItem().pushed = self.isShowDetail
+             self.detailOffsetX = self.detailShouldOffsetX()
+        }
+    }
+    @State var isDraggingDetail: Bool = false
     
     var body: some View {
         
@@ -24,6 +37,7 @@ struct StationListView: View {
     func makeNavigationView(g:GeometryProxy) -> some View {
        screenWidth = g.frame(in: .global).width
        screenHeight = g.frame(in: .global).height
+    
        let view = NavigationView {
             ZStack{
                 List {
@@ -42,10 +56,31 @@ struct StationListView: View {
                 
                 VStack {
                     Spacer()
-                    MiniPlayerControl(previousStation: self.items.previousStation, nextStation: self.items.nextStation)
-                        .environmentObject(self.items.values[self.items.currentStationIndex])
+                    MiniPlayerControl(previousStation: self.items.previousStation, nextStation: self.items.nextStation, pressImage: showDetail)
+                        .environmentObject(currentItem())
                         .frame(height:TrapezoidParameters.trapezoidHeight)
                 }.edgesIgnoringSafeArea(.all)
+//                if isShowDetail {
+                    StationDetail(backAction:hideDetail)
+                                       .environmentObject(currentItem())
+                                       .shadow(radius: 2)
+//                                        .transition(.move(edge: .trailing))
+                                       .offset(x: detailShowControl())
+                                       .opacity(detailOpacity())
+                                       .gesture(DragGesture()
+                                           .onChanged{ value in
+                                               self.isDraggingDetail = true
+                                               let offsetX = value.translation.width
+                                               self.detailOffsetX = offsetX
+                                       }
+                                           .onEnded{ value in
+                                               let offsetX = value.translation.width
+                                               self.isDraggingDetail = false
+                                               self.isShowDetail = offsetX < screenWidth / 2
+                                               self.currentItem().pushed = self.isShowDetail
+                                       })
+//                }
+               
             }
             .navigationBarTitle(Text("Stations"))
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -54,6 +89,40 @@ struct StationListView: View {
     
     func listSpacer() -> CGFloat {
         self.items.values[self.items.currentStationIndex].isPlaying ? TrapezoidParameters.trapezoidHeight - 32 : 0
+    }
+    
+    func showDetail() {
+        withAnimation{
+            self.isShowDetail = true
+        }
+    }
+    
+    func hideDetail() {
+        withAnimation{
+            self.isShowDetail = false
+        }
+    }
+    
+    func detailShowControl() -> CGFloat {
+        
+        if self.isDraggingDetail {
+            return self.detailOffsetX
+        } else {
+            return detailShouldOffsetX()
+        }
+        
+    }
+    
+    func detailShouldOffsetX() -> CGFloat {
+        self.isShowDetail ? 0.0 : screenWidth
+    }
+    
+    func detailOpacity() -> Double {
+        Double(1.0 - (self.detailOffsetX / screenWidth))
+    }
+    
+    func currentItem() -> RadioStationPlayable {
+        return self.items.values[self.items.currentStationIndex]
     }
 }
 

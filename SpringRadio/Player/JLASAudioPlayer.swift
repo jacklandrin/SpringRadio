@@ -21,7 +21,7 @@ class JLASAudioPlayer: NSObject, AudioPlayer, AVPlayerItemMetadataOutputPushDele
     }()
     var currentAudioStation: Playable?
     var analyzer:RealtimeAnalyzer = RealtimeAnalyzer(fftSize: bufferSize)
-    
+    var bufferring:Bool = false
     private var avplayer: AVPlayer = AVPlayer()
     
     override init() {
@@ -49,7 +49,7 @@ class JLASAudioPlayer: NSObject, AudioPlayer, AVPlayerItemMetadataOutputPushDele
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
             self?.audioPlayer.play()
         }
-        
+        self.bufferring = true
        
         self.setupNowPlaying()
     }

@@ -8,11 +8,13 @@ import Foundation
 import AVFoundation
 import Accelerate
 
+let defaultFrequencyBands = 80
+
 class RealtimeAnalyzer {
     private var fftSize: Int
     private lazy var fftSetup = vDSP_create_fftsetup(vDSP_Length(Int(round(log2(Double(fftSize))))), FFTRadix(kFFTRadix2))
     
-    public var frequencyBands: Int = 80 //频带数量
+    public var frequencyBands: Int = defaultFrequencyBands //频带数量
     public var startFrequency: Float = 100 //起始频率
     public var endFrequency: Float = 18000 //截止频率
     

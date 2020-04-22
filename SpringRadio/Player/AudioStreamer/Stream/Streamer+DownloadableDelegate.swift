@@ -18,14 +18,18 @@ extension Streamer: DownloadingDelegate {
             DispatchQueue.main.async { [unowned self] in
                 self.delegate?.streamer(self, failedDownloadWithError: error, forURL: url)
             }
+        } else if let url = download.url {
+            DispatchQueue.main.async { [unowned self] in
+                self.delegate?.streamer(self, downloadComplete: url)
+            }
         }
     }
     
     public func download(_ download: Downloading, changedState downloadState: DownloadingState) {
         os_log("%@ - %d [state: %@]", log: Streamer.logger, type: .debug, #function, #line, String(describing: downloadState))
-        if downloadState == .completed {
-            download.start()
-        }
+//        if downloadState == .completed {
+//            download.start()
+//        }
     }
     
     public func download(_ download: Downloading, didReceiveData data: Data, progress: Float) {

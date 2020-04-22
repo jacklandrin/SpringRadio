@@ -14,16 +14,18 @@ struct MiniPlayerControl: View {
     @State var tappedImage = false
     @State var imageAngle:Double = 0
     @State var isAnimating: Bool = false
+    @State var offsetY: CGFloat = TrapezoidParameters.trapezoidHeight
     
     var previousStation : () -> Void
     var nextStation : () -> Void
-    
+    var pressImage : () -> Void
     
     var body: some View {
         GeometryReader{ g in
-            self.makeMainStack(g: g).onAppear {
+            self.makeMainStack(g: g)
+                .onAppear {
                 self.isAnimating = true
-            }
+                }
         }
        .navigationBarHidden(self.currentItem.pushed)
        .navigationBarBackButtonHidden(self.currentItem.pushed)
@@ -47,16 +49,14 @@ struct MiniPlayerControl: View {
         
         VStack {
             Spacer()
-            BluredSoundWave().opacity(0.8)
+            BluredSoundWave().opacity(self.currentItem.isPlaying ? 0.8 : 0)
         }.edgesIgnoringSafeArea(.all)
         
             
             VStack {
                 Spacer(minLength: TrapezoidParameters.trapezoidHeight * 0.3)
                 HStack{
-                    NavigationLink(destination: StationDetail()
-                        .environmentObject(self.currentItem)
-                    , isActive:$currentItem.pushed.animation()) {
+                    Button(action:pressImage, label: {
                         Image(self.currentItem.radioItem.imageName).renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
                             .resizable()
                             .frame( width:60,height:60)
@@ -65,15 +65,15 @@ struct MiniPlayerControl: View {
                             .shadow(radius: 3)
                             .rotationEffect(Angle(degrees: self.isAnimating ? 360.0 : 0.0))
                             .animation(Animation.linear(duration: 20).repeatForever(autoreverses: false))
-                    }
+                    })
                     .buttonStyle(MagnifyButtonStyle())
                     .padding(.leading ,25)
-                    .scaleEffect(self.tappedImage ? 1.2 : 1.0)
+                        .scaleEffect((self.tappedImage || self.currentItem.pushed) ? 1.2 : 1.0)
                    
                         
                     Spacer()
                     VStack {
-                        Text(currentItem.streamTitle).foregroundColor(self.currentItem.sideColor).lineLimit(2)
+                        Text(titleDisplay()).foregroundColor(self.currentItem.sideColor).lineLimit(2)
                         HStack{
                             Spacer()
                             Button(action:tapPreviousButton) {
@@ -95,26 +95,30 @@ struct MiniPlayerControl: View {
                 }
                 Spacer()
             }
-       }.offset(y:takeUpDownControl())
+       }.offset(y:offsetY)
         .animation(.spring())
+        .onReceive(self.currentItem.objectWillChange) { _ in
+            if self.currentItem.isPlaying {
+                self.offsetY = 0.0
+            }
+        }
         return view
+    }
+    
+    func titleDisplay() -> String {
+        self.currentItem.isPlaying ?  currentItem.streamTitle : self.currentItem.radioItem.title
     }
     
     func controlPlay() {
         self.currentItem.isPlaying = !self.currentItem.isPlaying
     }
     
-    func takeUpDownControl() -> CGFloat {
-        self.currentItem.isPlaying ? 0.0 : TrapezoidParameters.trapezoidHeight
-    }
     
     func tapPreviousButton() {
-//        self.currentItem.isPlaying = false
         self.previousStation()
     }
     
     func tapNextButton() {
-//        self.currentItem.isPlaying = false
         self.nextStation()
     }
     
@@ -129,7 +133,7 @@ struct MagnifyButtonStyle:ButtonStyle{
 
 struct MiniPlayerControl_Previews: PreviewProvider {
     static var previews: some View {
-        MiniPlayerControl(previousStation: {}, nextStation: {}).environmentObject(RadioStationPlayable.radionStationExample()).previewLayout(.fixed(width: UIScreen.main.bounds.width, height: TrapezoidParameters.trapezoidHeight))
+        MiniPlayerControl(previousStation: {}, nextStation: {}, pressImage: {}).environmentObject(RadioStationPlayable.radionStationExample()).previewLayout(.fixed(width: UIScreen.main.bounds.width, height: TrapezoidParameters.trapezoidHeight))
     }
 }
 

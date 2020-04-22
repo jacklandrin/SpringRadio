@@ -38,6 +38,7 @@ class SpectrumView: UIView {
     
     var leftGradientLayer = CAGradientLayer()
     var rightGradientLayer = CAGradientLayer()
+
     
     var spectra:[[Float]]? {
         didSet {
@@ -50,10 +51,15 @@ class SpectrumView: UIView {
                     let bar = UIBezierPath(rect: CGRect(x: x, y: y, width: barWidth, height: bounds.height - bottomSpace - y))
                     leftPath.append(bar)
                 }
+                
                 let leftMaskLayer = CAShapeLayer()
                 leftMaskLayer.path = leftPath.cgPath
+                 
                 leftGradientLayer.frame = CGRect(x: 0, y: topSpace, width: bounds.width, height: bounds.height - topSpace - bottomSpace)
                 leftGradientLayer.mask = leftMaskLayer
+                 leftGradientLayer.shouldRasterize = true
+                 leftGradientLayer.drawsAsynchronously = true
+                 leftGradientLayer.isOpaque = true
                 
                 // right channel
                 if spectra.count >= 2 {
@@ -66,12 +72,17 @@ class SpectrumView: UIView {
                     }
                     let rightMaskLayer = CAShapeLayer()
                     rightMaskLayer.path = rightPath.cgPath
+                 
                     rightGradientLayer.frame = CGRect(x: 0, y: topSpace, width: bounds.width, height: bounds.height - topSpace - bottomSpace)
                     rightGradientLayer.mask = rightMaskLayer
+                 rightGradientLayer.shouldRasterize = true
+                 rightGradientLayer.drawsAsynchronously = true
+                 rightGradientLayer.isOpaque = true
                 }
             }
         }
     }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,13 +95,21 @@ class SpectrumView: UIView {
     }
     
     private func setupView() {
-        rightGradientLayer.colors = rightColors
-        rightGradientLayer.locations = [0.6, 1.0]
-        self.layer.addSublayer(rightGradientLayer)
+        self.layer.contentsScale = UIScreen.main.scale
         
         leftGradientLayer.colors = leftColors
         leftGradientLayer.locations = [0.6, 1.0]
+
         self.layer.addSublayer(leftGradientLayer)
+    
+        
+        rightGradientLayer.colors = rightColors
+        rightGradientLayer.locations = [0.7, 1.0]
+        self.layer.addSublayer(rightGradientLayer)
+        
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+        layer.isOpaque = true
     }
     
     private func translateAmplitudeToYPosition(amplitude: Float) -> CGFloat {

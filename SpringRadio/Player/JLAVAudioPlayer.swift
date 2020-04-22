@@ -16,7 +16,8 @@ class JLAVAudioPlayer: NSObject ,AVPlayerItemMetadataOutputPushDelegate, AudioPl
     var playerItem: AVPlayerItem?
     var currentAudioStation: Playable?
     var analyzer = RealtimeAnalyzer(fftSize: bufferSize)
-    
+    var bufferring: Bool = false
+        
     override init() {
         super.init()
         self.setupRemoteCommandCenter()
@@ -45,7 +46,7 @@ class JLAVAudioPlayer: NSObject ,AVPlayerItemMetadataOutputPushDelegate, AudioPl
         self.audioPlayer = AVPlayer(playerItem: playerItem)
         self.audioPlayer?.play()
         self.setupNowPlaying()
-        
+        self.bufferring = true
         
         let metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
         metadataOutput.setDelegate(self, queue: .main)
@@ -60,6 +61,7 @@ class JLAVAudioPlayer: NSObject ,AVPlayerItemMetadataOutputPushDelegate, AudioPl
             return
         }
         self.currentAudioStation?.streamTitle = title
+        self.bufferring = false
     }
     
     func stop(){

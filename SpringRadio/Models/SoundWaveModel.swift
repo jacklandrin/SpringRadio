@@ -13,6 +13,7 @@ class SoundWaveModel: ObservableObject {
     @Published var spectra: [[Float]] = [[Float]]()
     @Published var barWidth:CGFloat = 3.0
     @Published var space:CGFloat = 0.0
+//    let queue = DispatchQueue(label: "com.springRadio.spectrum")
     
     init() {
         self.setSpectrum()
