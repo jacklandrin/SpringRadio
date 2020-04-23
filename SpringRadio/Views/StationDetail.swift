@@ -12,11 +12,10 @@ import SwiftUI
 struct StationDetail: View {
     @EnvironmentObject var currentItem:RadioStationPlayable
     @ObservedObject var floatText:FloatTextViewModel = FloatTextViewModel()
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var backAction : () -> Void
     
-    let floatTitleFontSize: CGFloat = 100.0
+    let floatTitleFontSize: CGFloat = 180.0
     let streamTitleFontSize: CGFloat = 50.0
     let maxImageEdge:CGFloat = 300.0
     
@@ -28,11 +27,29 @@ struct StationDetail: View {
         .foregroundColor(self.currentItem.sideColor)
         .lineLimit(1)
             .offset(x: self.floatText.titleX, y: self.floatText.titleY)
-            .position(x:self.floatText.orientation == .horizontal ? screenWidth : screenHeight,y:self.floatText.orientation == .horizontal ? 160 : 180)
-            .rotationEffect(self.floatText.orientation == .horizontal ? .degrees(0) : .degrees(90))
+            .position(x:floatPositionX(),y:floatTitlePositionY())
+            .rotationEffect(floatRotation())
             .brightness(0.3)
+            .opacity(0.65)
         .scaledToFit()
     }
+    
+   
+    
+    func floatTitlePositionY() -> CGFloat {
+        switch self.floatText.orientation {
+        case .horizontal:
+            return 200.0
+        case .vertical:
+            return 140.0
+        case .positiveTilt:
+            return 180.0
+        case .negativeTilt:
+            return 180.0
+        }
+    }
+    
+    
     
     var floatStreamText: some View {
         Text(self.currentItem.streamTitle)
@@ -41,11 +58,40 @@ struct StationDetail: View {
         .foregroundColor(self.currentItem.sideColor)
         .lineLimit(1)
             .offset(x: self.floatText.streamTitleX, y: self.floatText.streamTitleY)
-        .position(x:self.floatText.orientation == .horizontal ? screenWidth : screenHeight,y:self.floatText.orientation == .horizontal ? 20 : 100)
-        .rotationEffect(self.floatText.orientation == .horizontal ? .degrees(0) : .degrees(90))
+        .position(x:floatPositionX(),y:0)
+        .rotationEffect(floatRotation())
             .brightness(0.3)
+            .opacity(0.85)
         .scaledToFit()
     }
+    
+    
+    func floatPositionX() -> CGFloat {
+      switch self.floatText.orientation {
+           case .horizontal:
+               return screenWidth
+           case .vertical:
+               return screenHeight
+           case .positiveTilt:
+               return screenWidth * 1.42
+           case .negativeTilt:
+               return screenWidth * 1.42
+       }
+    }
+    
+    func floatRotation() -> Angle {
+        switch self.floatText.orientation {
+        case .horizontal:
+            return .degrees(0)
+        case .vertical:
+            return .degrees(90)
+        case .positiveTilt:
+            return .degrees(45)
+        case .negativeTilt:
+            return .degrees(-45)
+        }
+    }
+    
     
     var backButton: some View {
         Button(action: self.backAction) {
@@ -66,7 +112,6 @@ struct StationDetail: View {
             }
         )
         .onReceive(self.floatText.timer) { n in
-            print("timer \(n)")
             if self.currentItem.pushed {
                 self.floatText.startAnimation()
             }
@@ -106,7 +151,7 @@ struct StationDetail: View {
             }.clipped()
             .opacity(0.90)
             backButton
-                .position(x:40,y:backButtonPositionY)
+                .position(x:50,y:backButtonPositionY)
                 
         }.clipped()
         .edgesIgnoringSafeArea(.all)
