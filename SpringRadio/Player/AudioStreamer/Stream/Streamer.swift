@@ -281,7 +281,7 @@ class Streamer: Streaming {
             return
         }
 
-        guard (parser?.packets.count)! > Int(readBufferSize) else {
+        guard (parser?.packets.count)! > 512 else {
             return
         }
         

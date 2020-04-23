@@ -13,7 +13,6 @@ import AVFoundation
 
 extension JLASAudioPlayer : StreamingDelegate {
     func streamer(_ streamer: Streaming, downloadComplete url: URL) {
-        self.audioPlayer.url = url
         self.audioPlayer.play()
     }
     
@@ -47,13 +46,15 @@ extension JLASAudioPlayer : StreamingDelegate {
     }
     
     func streamer(_ streamer: Streaming, updateBuffer: AVAudioPCMBuffer) {
-        queue.async { [weak self] in
-            let buffer = updateBuffer
-            let spectra = self?.analyzer.analyse(with: buffer)
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: spectraNofiticationName, object: spectra!)
-            }
+        guard self.isAppActive else {
+            return
         }
+        let buffer = updateBuffer
+        let spectra = self.analyzer.analyse(with: buffer)
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: spectraNofiticationName, object: spectra)
+        }
+
         self.bufferring = false
     }
     

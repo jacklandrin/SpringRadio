@@ -75,7 +75,7 @@ public protocol Streaming: class {
 extension Streaming {
     
     public var readBufferSize: AVAudioFrameCount {
-        return 512
+        return 2048
     }
     
     public var readFormat: AVAudioFormat {

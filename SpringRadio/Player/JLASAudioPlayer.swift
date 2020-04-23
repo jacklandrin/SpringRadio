@@ -23,10 +23,18 @@ class JLASAudioPlayer: NSObject, AudioPlayer, AVPlayerItemMetadataOutputPushDele
     var analyzer:RealtimeAnalyzer = RealtimeAnalyzer(fftSize: bufferSize)
     var bufferring:Bool = false
     private var avplayer: AVPlayer = AVPlayer()
+    public internal(set) var isAppActive = true
     
     override init() {
         super.init()
         self.setupRemoteCommandCenter()
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main, using: { _ in
+            self.isAppActive = true
+        })
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main, using: { _ in
+            self.isAppActive = false
+        })
     }
     
     func play<T>(stream item: T?) where T : Playable {

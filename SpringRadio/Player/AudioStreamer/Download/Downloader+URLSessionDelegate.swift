@@ -36,7 +36,11 @@ extension Downloader: URLSessionDataDelegate {
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         os_log("%@ - %d", log: Downloader.logger, type: .debug, #function, #line)
-
+        var networkError = error
+        let statusCode = (task.response as? HTTPURLResponse)?.statusCode
+        if networkError == nil && statusCode != 200 {
+             networkError = NSError(domain:"", code: statusCode!, userInfo: nil)
+        }
         state = .completed
         delegate?.download(self, completedWithError: error)
         completionHandler?(error)

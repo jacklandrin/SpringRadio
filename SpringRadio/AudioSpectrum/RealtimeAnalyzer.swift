@@ -61,11 +61,13 @@ class RealtimeAnalyzer {
             let weightedAmplitudes = amplitudes.enumerated().map {(index, element) in
                 return element * aWeights[index]
             }
+           
             var spectrum = bands.map {
                 findMaxAmplitude(for: $0, in: weightedAmplitudes, with: Float(buffer.format.sampleRate)  / Float(self.fftSize)) * 5
             }
+
             spectrum = highlightWaveform(spectrum: spectrum)
-            
+
             let zipped = zip(spectrumBuffer[index], spectrum)
             spectrumBuffer[index] = zipped.map { $0.0 * spectrumSmooth + $0.1 * (1 - spectrumSmooth) }
         }

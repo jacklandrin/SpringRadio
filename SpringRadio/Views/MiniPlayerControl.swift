@@ -46,12 +46,12 @@ struct MiniPlayerControl: View {
                 .opacity(0.95)
                 .brightness(0.05)
                 .shadow(radius: 0.8)
-        
-        VStack {
-            Spacer()
-            BluredSoundWave().opacity(self.currentItem.isPlaying ? 0.8 : 0)
-        }.edgesIgnoringSafeArea(.all)
-        
+        if !self.currentItem.pushed {
+            VStack {
+                Spacer()
+                BluredSoundWave().opacity(self.currentItem.isPlaying ? 0.8 : 0)
+            }.edgesIgnoringSafeArea(.all)
+        }
             
             VStack {
                 Spacer(minLength: TrapezoidParameters.trapezoidHeight * 0.3)
