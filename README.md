@@ -20,7 +20,7 @@ Like this, these pieces of buffer can be put into AudioSpectrum's **RealtimeAnal
 
 ![](http://www.jacklandrin.com/wp-content/uploads/2020/04/SpringRadio.png)
 
-Since AudioStreamer is not originally designed for realtime audio, the Parser collects the data downloaded until request completing, which cause memory issue for online radio. So, I added a strategy, which the Reader will remove certain numbers of packets of Parser in case this problem, while the Reader consume certain account of data. Besides, while the PlayNode schedules the buffer, the function will check if there are enough packets to be read in case audio stalling.
+Since AudioStreamer is not originally designed for realtime audio, the Parser collects the data downloaded until request completing, which causes memory issue for online radio. So, I added a strategy, which the Reader will remove certain numbers of packets of Parser in case this problem, while the Reader consume certain account of data. Besides, while the PlayNode schedules the buffer, the function will check if there are enough packets to be read in case audio stalling.
 
 ## Requirement
 * iOS 13
