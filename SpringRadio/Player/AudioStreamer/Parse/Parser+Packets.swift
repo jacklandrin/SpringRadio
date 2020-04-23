@@ -14,7 +14,7 @@ func ParserPacketCallback(_ context: UnsafeMutableRawPointer, _ byteCount: UInt3
     let parser = Unmanaged<Parser>.fromOpaque(context).takeUnretainedValue()
     let packetDescriptionsOrNil: UnsafeMutablePointer<AudioStreamPacketDescription>? = packetDescriptions
     let isCompressed = packetDescriptionsOrNil != nil
-    os_log("%@ - %d [bytes: %i, packets: %i, compressed: %@]", log: Parser.loggerPacketCallback, type: .debug, #function, #line, byteCount, packetCount, "\(isCompressed)")
+//    os_log("%@ - %d [bytes: %i, packets: %i, compressed: %@]", log: Parser.loggerPacketCallback, type: .debug, #function, #line, byteCount, packetCount, "\(isCompressed)")
     
     /// At this point we should definitely have a data format
     guard let dataFormat = parser.dataFormat else {
@@ -45,5 +45,5 @@ func ParserPacketCallback(_ context: UnsafeMutableRawPointer, _ byteCount: UInt3
         parser.packets.removeSubrange(0...1023)
     }
     
-    os_log("%@ - %d [current_packets_count: %i]", log: Parser.loggerPacketCallback, type: .debug, #function, #line,  parser.packets.count)
+//    os_log("%@ - %d [current_packets_count: %i]", log: Parser.loggerPacketCallback, type: .debug, #function, #line,  parser.packets.count)
 }

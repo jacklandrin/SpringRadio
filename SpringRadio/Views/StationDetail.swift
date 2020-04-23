@@ -16,7 +16,7 @@ struct StationDetail: View {
     
     var backAction : () -> Void
     
-    let floatTitleFontSize: CGFloat = 85.0
+    let floatTitleFontSize: CGFloat = 100.0
     let streamTitleFontSize: CGFloat = 50.0
     let maxImageEdge:CGFloat = 300.0
     
@@ -28,7 +28,7 @@ struct StationDetail: View {
         .foregroundColor(self.currentItem.sideColor)
         .lineLimit(1)
             .offset(x: self.floatText.titleX, y: self.floatText.titleY)
-            .position(x:self.floatText.orientation == .horizontal ? screenWidth : screenHeight,y:self.floatText.orientation == .horizontal ? 200 : 260)
+            .position(x:self.floatText.orientation == .horizontal ? screenWidth : screenHeight,y:self.floatText.orientation == .horizontal ? 160 : 180)
             .rotationEffect(self.floatText.orientation == .horizontal ? .degrees(0) : .degrees(90))
             .brightness(0.3)
         .scaledToFit()

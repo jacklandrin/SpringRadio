@@ -22,6 +22,7 @@ class JLASAudioPlayer: NSObject, AudioPlayer, AVPlayerItemMetadataOutputPushDele
     var currentAudioStation: Playable?
     var analyzer:RealtimeAnalyzer = RealtimeAnalyzer(fftSize: bufferSize)
     var bufferring:Bool = false
+    
     private var avplayer: AVPlayer = AVPlayer()
     public internal(set) var isAppActive = true
     

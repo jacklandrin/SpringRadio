@@ -19,7 +19,7 @@ struct RadioItem {
 
 let defaultStreamTitle = "Loading..."
 
-let backButtonPositionY:CGFloat = 100.0
+let backButtonPositionY:CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 50 : 100.0
 
 class RadioStationPlayable: Playable, ObservableObject, Identifiable{
 
