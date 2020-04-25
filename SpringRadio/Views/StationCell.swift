@@ -17,7 +17,7 @@ struct StationCell: View {
             Text(item.radioItem.title)
             Spacer()
             Image(systemName: "play.circle").opacity(item.isPlaying ?  1 : 0)
-        }
+        }.contentShape(Rectangle())
     }
 }
 

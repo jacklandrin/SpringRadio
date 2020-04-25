@@ -14,7 +14,7 @@ enum FloatTextOrientation: Int {
     case vertical = 0, horizontal, positiveTilt, negativeTilt
 }
 
-let floatAnimationDuration = 10.0
+let floatAnimationDuration = 20.0
 var screenWidth = UIApplication.shared.windows[0].bounds.width
 var screenHeight = UIApplication.shared.windows[0].bounds.height
 
