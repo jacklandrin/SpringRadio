@@ -80,6 +80,7 @@ struct StationDetail: View {
     }
     
     func floatRotation() -> Angle {
+        print("orientation:\(floatText.orientation)")
         switch self.floatText.orientation {
         case .horizontal:
             return .degrees(0)
@@ -90,6 +91,7 @@ struct StationDetail: View {
         case .negativeTilt:
             return .degrees(-45)
         }
+
     }
     
     
@@ -121,6 +123,13 @@ struct StationDetail: View {
             if self.currentItem.pushed {
                 self.floatText.startAnimation()
             }
+        }
+        .onReceive(self.currentItem.pushedWillChange) { newValue in
+            print("pushedWillChange:\(newValue)")
+            if newValue {
+                self.floatText.startAnimation()
+            }
+            self.floatText.shouldUptateStreamTitleX = newValue
         }
     }
     
@@ -168,6 +177,7 @@ struct StationDetail: View {
     
     func makeFloatStreamTitleText(_ geometry: GeometryProxy) -> some View {
         self.floatText.streamTitleWidth = UILabel.calculationTextWidth(text: self.currentItem.streamTitle, fontSize: streamTitleFontSize)//geometry.size.width
+        
         return self.floatStreamText.frame(width:self.floatText.streamTitleWidth).brightness(0.05)
     }
     

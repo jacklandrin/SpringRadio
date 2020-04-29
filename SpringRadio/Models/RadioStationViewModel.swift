@@ -76,6 +76,7 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
         willSet {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "statueBarChanged"), object: nil, userInfo: ["hidden" : newValue])
             objectWillChange.send()
+            pushedWillChange.send(newValue)
         }
     }
     
@@ -138,6 +139,7 @@ class RadioStationPlayable: Playable, ObservableObject, Identifiable{
     
     let objectWillChange = ObservableObjectPublisher()
     let streamTitleWillChange = PassthroughSubject<String, Never>()
+    let pushedWillChange = PassthroughSubject<Bool, Never>()
 }
 
 

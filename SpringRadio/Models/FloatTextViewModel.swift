@@ -24,7 +24,7 @@ class FloatTextViewModel: ObservableObject {
     let timer = Timer.publish(every: floatAnimationDuration, on: .main, in: .common).autoconnect()
     
     let animation = Animation.linear(duration: floatAnimationDuration)
-
+    var shouldUptateStreamTitleX:Bool = false
     
     var orientation : FloatTextOrientation = .horizontal
     {
@@ -59,8 +59,10 @@ class FloatTextViewModel: ObservableObject {
                 if _streamTitleWidth != newValue {
                     _streamTitleWidth = newValue
                     print("streamTitleWidth:\(_streamTitleWidth)")
-                    self.changeOrientation(orientation: self.orientation)
+                    if shouldUptateStreamTitleX {
+                        let _ = convertEndLocation(orientation: self.orientation)
                     }
+                }
         }
                 
         get {
@@ -100,56 +102,63 @@ class FloatTextViewModel: ObservableObject {
     func startAnimation() {
         self.changeOrientation(orientation: FloatTextOrientation(rawValue: Int.random(in: 0...3)) ?? .horizontal)
     }
-
-    func changeOrientation(orientation:FloatTextOrientation) {
-        
+    
+    func convertEndLocation(orientation:FloatTextOrientation) -> (distanceTitleX: CGFloat, distanceStreamTitleX: CGFloat) {
+        print("old titleX:\(self.titleX) old streamTitleX:\(self.streamTitleWidth)")
         if self.orientation != orientation {
-            self.orientation = orientation
+                self.orientation = orientation
+                switch orientation {
+                case .horizontal:
+                    let distanceTitleX = screenWidth + self.titleWidth
+                    let distanceStreamTitleX = screenWidth + self.streamTitleWidth
+                    self.titleX = -distanceTitleX
+                    self.streamTitleX = distanceStreamTitleX
+                case .vertical:
+                    let distanceTitleX = screenHeight + self.titleWidth
+                    let distanceStreamTitleX = screenHeight + self.streamTitleWidth
+                    self.titleX = -distanceTitleX
+                    self.streamTitleX = distanceStreamTitleX
+                case .positiveTilt, .negativeTilt:
+                    let distanceTitleX = screenWidth * 1.42 + self.titleWidth
+                    let distanceStreamTitleX = screenWidth  * 1.42 + self.streamTitleWidth
+                    self.titleX = -distanceTitleX
+                    self.streamTitleX = distanceStreamTitleX
+                }
+            }
+        
+            var distanceTitleX:CGFloat = 0.0
+            var distanceStreamTitleX:CGFloat = 0.0
+            
             switch orientation {
             case .horizontal:
-                let distanceTitleX = screenWidth + self.titleWidth
-                let distanceStreamTitleX = screenWidth + self.streamTitleWidth
-                self.titleX = -distanceTitleX
-                self.streamTitleX = distanceStreamTitleX
+                self.titleY = CGFloat(Float.random(in: -240.0...240.0))
+                self.streamTitleY = self.titleY - 190.0
+                distanceTitleX = screenWidth + self.titleWidth
+                distanceStreamTitleX = screenWidth + self.streamTitleWidth
+                
+                
             case .vertical:
-                let distanceTitleX = screenHeight + self.titleWidth
-                let distanceStreamTitleX = screenHeight + self.streamTitleWidth
-                self.titleX = -distanceTitleX
-                self.streamTitleX = distanceStreamTitleX
+                self.titleY = CGFloat(Float.random(in: -60.0...60.0))
+                self.streamTitleY = self.titleY - 25.0
+                distanceTitleX = screenHeight + self.titleWidth
+                distanceStreamTitleX = screenHeight + self.streamTitleWidth
+                
             case .positiveTilt, .negativeTilt:
-                let distanceTitleX = screenWidth * 1.42 + self.titleWidth
-                let distanceStreamTitleX = screenWidth  * 1.42 + self.streamTitleWidth
-                self.titleX = -distanceTitleX
-                self.streamTitleX = distanceStreamTitleX
-
+                self.titleY = CGFloat(Float.random(in: -80.0...80.0))
+                self.streamTitleY = self.titleY - 100.0
+                distanceTitleX = screenWidth * 1.42 + self.titleWidth
+                distanceStreamTitleX = screenWidth * 1.42 + self.streamTitleWidth
+                
             }
-        }
+        print("new titleX:\(self.titleX) new streamTitleX:\(self.streamTitleWidth)")
+        return (distanceTitleX, distanceStreamTitleX)
+    }
     
-        var distanceTitleX:CGFloat = 0.0
-        var distanceStreamTitleX:CGFloat = 0.0
+    func changeOrientation(orientation:FloatTextOrientation) {
         
-        switch orientation {
-        case .horizontal:
-            self.titleY = CGFloat(Float.random(in: -240.0...240.0))
-            self.streamTitleY = self.titleY - 190.0
-            distanceTitleX = screenWidth + self.titleWidth
-            distanceStreamTitleX = screenWidth + self.streamTitleWidth
-            
-            
-        case .vertical:
-            self.titleY = CGFloat(Float.random(in: -60.0...60.0))
-            self.streamTitleY = self.titleY - 25.0
-            distanceTitleX = screenHeight + self.titleWidth
-            distanceStreamTitleX = screenHeight + self.streamTitleWidth
-            
-        case .positiveTilt, .negativeTilt:
-            self.titleY = CGFloat(Float.random(in: -80.0...80.0))
-            self.streamTitleY = self.titleY - 100.0
-            distanceTitleX = screenWidth * 1.42 + self.titleWidth
-            distanceStreamTitleX = screenWidth * 1.42 + self.streamTitleWidth
-            
-        }
-        doFloatAnimation(distanceTitleX: distanceTitleX, distanceStreamTitleX: distanceStreamTitleX)
+        let endLocation = self.convertEndLocation(orientation: orientation)
+        
+        doFloatAnimation(distanceTitleX: endLocation.distanceTitleX, distanceStreamTitleX: endLocation.distanceStreamTitleX)
     }
     
     func doFloatAnimation(distanceTitleX: CGFloat, distanceStreamTitleX: CGFloat) {

@@ -41,7 +41,7 @@ struct StationListView: View {
        let view = NavigationView {
             ZStack{
                 List {
-                    ForEach (self.items.values.indices) { i in
+                    ForEach (self.items.values.indices, id: \.self) { i in
                         StationCell().environmentObject(self.items.values[i]).frame(height: 44)
                         .onTapGesture {
                             let item = self.items.values[i]
