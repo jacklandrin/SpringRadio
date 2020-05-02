@@ -127,7 +127,12 @@ struct StationDetail: View {
         .onReceive(self.currentItem.pushedWillChange) { newValue in
             print("pushedWillChange:\(newValue)")
             if newValue {
-                self.floatText.startAnimation()
+//                self.floatText.timer = Timer.publish(every: floatAnimationDuration, on: .main, in: .common).autoconnect()
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.floatText.startAnimation()
+//                }
+            } else {
+//                self.floatText.timer.upstream.connect().cancel()
             }
             self.floatText.shouldUptateStreamTitleX = newValue
         }
@@ -169,14 +174,19 @@ struct StationDetail: View {
     }
     
     func makeFloatTitleText(_ geometry:GeometryProxy) -> some View {
-        self.floatText.titleWidth = UILabel.calculationTextWidth(text: self.currentItem.radioItem.title, fontSize: floatTitleFontSize)
+        if self.currentItem.pushed {
+             self.floatText.titleWidth = UILabel.calculationTextWidth(text: self.currentItem.radioItem.title, fontSize: floatTitleFontSize)
+        }
+       
         let text = self.floatTitleText.frame(width:self.floatText.titleWidth)
             
         return text
     }
     
     func makeFloatStreamTitleText(_ geometry: GeometryProxy) -> some View {
-        self.floatText.streamTitleWidth = UILabel.calculationTextWidth(text: self.currentItem.streamTitle, fontSize: streamTitleFontSize)//geometry.size.width
+        if self.currentItem.pushed{
+            self.floatText.streamTitleWidth = UILabel.calculationTextWidth(text: self.currentItem.streamTitle, fontSize: streamTitleFontSize)//geometry.size.width
+        }
         
         return self.floatStreamText.frame(width:self.floatText.streamTitleWidth).brightness(0.05)
     }

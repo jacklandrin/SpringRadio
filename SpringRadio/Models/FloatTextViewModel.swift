@@ -19,9 +19,9 @@ var screenWidth = UIApplication.shared.windows[0].bounds.width
 var screenHeight = UIApplication.shared.windows[0].bounds.height
 
 class FloatTextViewModel: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()
+//    let objectWillChange = ObservableObjectPublisher()
    
-    let timer = Timer.publish(every: floatAnimationDuration, on: .main, in: .common).autoconnect()
+    var timer:Publishers.Autoconnect<Timer.TimerPublisher> = Timer.publish(every: floatAnimationDuration, on: .main, in: .common).autoconnect()
     
     let animation = Animation.linear(duration: floatAnimationDuration)
     var shouldUptateStreamTitleX:Bool = false
@@ -100,6 +100,7 @@ class FloatTextViewModel: ObservableObject {
     }
     
     func startAnimation() {
+        
         self.changeOrientation(orientation: FloatTextOrientation(rawValue: Int.random(in: 0...3)) ?? .horizontal)
     }
     
@@ -162,7 +163,7 @@ class FloatTextViewModel: ObservableObject {
     }
     
     func doFloatAnimation(distanceTitleX: CGFloat, distanceStreamTitleX: CGFloat) {
-        withAnimation(Animation.linear(duration: floatAnimationDuration)) {
+        withAnimation(Animation.easeInOut(duration: floatAnimationDuration)) {
             print("old title x:\(self.titleX)")
             if self.titleX != -distanceTitleX {
                 self.titleX = -distanceTitleX

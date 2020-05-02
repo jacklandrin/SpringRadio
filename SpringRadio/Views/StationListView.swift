@@ -22,7 +22,7 @@ struct StationListView: View {
                 }
             })
             self.currentItem().pushed = self.isShowDetail
-             self.detailOffsetX = self.detailShouldOffsetX()
+            self.detailOffsetX = self.detailShouldOffsetX()
         }
     }
     @State var isDraggingDetail: Bool = false
@@ -67,6 +67,7 @@ struct StationListView: View {
 //                                        .transition(.move(edge: .trailing))
                                        .offset(x: detailShowControl())
                                        .opacity(detailOpacity())
+//                                       .rotation3DEffect(detailAngle(), axis: (x: 0, y: screenWidth, z: 0))
                                        .gesture(DragGesture()
                                            .onChanged{ value in
                                                self.isDraggingDetail = true
@@ -115,6 +116,10 @@ struct StationListView: View {
     
     func detailShouldOffsetX() -> CGFloat {
         self.isShowDetail ? 0.0 : screenWidth
+    }
+    
+    func detailAngle() -> Angle {
+        return .degrees(Double( (screenWidth - self.detailOffsetX) / screenWidth) * 90.0 )
     }
     
     func detailOpacity() -> Double {

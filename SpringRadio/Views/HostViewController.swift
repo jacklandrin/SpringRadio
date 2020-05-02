@@ -16,6 +16,8 @@ class HostingViewController: UIHostingController<AnyView> {
             let newValue = notification.userInfo?["hidden"] as! Bool
             self?.statusBarHidden = newValue
         })
+        
+        
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
