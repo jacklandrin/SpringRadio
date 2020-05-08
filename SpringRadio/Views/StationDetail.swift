@@ -127,13 +127,8 @@ struct StationDetail: View {
         .onReceive(self.currentItem.pushedWillChange) { newValue in
             print("pushedWillChange:\(newValue)")
             if newValue {
-//                self.floatText.timer = Timer.publish(every: floatAnimationDuration, on: .main, in: .common).autoconnect()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.floatText.startAnimation()
-//                }
-            } else {
-//                self.floatText.timer.upstream.connect().cancel()
-            }
+                self.floatText.startAnimation()
+            } 
             self.floatText.shouldUptateStreamTitleX = newValue
         }
     }
