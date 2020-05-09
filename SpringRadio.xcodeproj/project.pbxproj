@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC0CCB1B243DABCB000AF2FC /* FloatTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0CCB1A243DABCB000AF2FC /* FloatTextViewModel.swift */; };
 		CC167395243F43AD002B8CAB /* TextSizeFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC167394243F43AD002B8CAB /* TextSizeFit.swift */; };
 		CC173F6C2439A1F600ECF53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F6B2439A1F600ECF53C /* AppDelegate.swift */; };
 		CC173F6E2439A1F600ECF53C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC173F6D2439A1F600ECF53C /* SceneDelegate.swift */; };
@@ -26,6 +25,8 @@
 		CC3961C6243CF080002420EE /* UIColor++.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3961C3243CF080002420EE /* UIColor++.swift */; };
 		CC3961C8243CFD21002420EE /* StationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3961C7243CFD21002420EE /* StationDetail.swift */; };
 		CC414CDA243B9A8200F78AD4 /* RadioStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC414CD9243B9A8200F78AD4 /* RadioStationViewModel.swift */; };
+		CC424F7E24653CA60026058B /* FloatingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC424F7D24653CA60026058B /* FloatingTextView.swift */; };
+		CC424F80246594AE0026058B /* FloatingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC424F7F246594AE0026058B /* FloatingText.swift */; };
 		CCA243F1244C4E9B00B22346 /* JLAVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243F0244C4E9B00B22346 /* JLAVAudioPlayer.swift */; };
 		CCA243F3244C549200B22346 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243F2244C549200B22346 /* PlayerManager.swift */; };
 		CCA243F9244C5E7D00B22346 /* JLASAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA243F8244C5E7D00B22346 /* JLASAudioPlayer.swift */; };
@@ -75,7 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CC0CCB1A243DABCB000AF2FC /* FloatTextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatTextViewModel.swift; sourceTree = "<group>"; };
 		CC167394243F43AD002B8CAB /* TextSizeFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSizeFit.swift; sourceTree = "<group>"; };
 		CC173F682439A1F600ECF53C /* SpringRadio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpringRadio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC173F6B2439A1F600ECF53C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +100,8 @@
 		CC3961C3243CF080002420EE /* UIColor++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor++.swift"; sourceTree = "<group>"; };
 		CC3961C7243CFD21002420EE /* StationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetail.swift; sourceTree = "<group>"; };
 		CC414CD9243B9A8200F78AD4 /* RadioStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioStationViewModel.swift; sourceTree = "<group>"; };
+		CC424F7D24653CA60026058B /* FloatingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextView.swift; sourceTree = "<group>"; };
+		CC424F7F246594AE0026058B /* FloatingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingText.swift; sourceTree = "<group>"; };
 		CCA243F0244C4E9B00B22346 /* JLAVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLAVAudioPlayer.swift; sourceTree = "<group>"; };
 		CCA243F2244C549200B22346 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		CCA243F8244C5E7D00B22346 /* JLASAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JLASAudioPlayer.swift; sourceTree = "<group>"; };
@@ -231,6 +233,8 @@
 				CCA2442F244C715B00B22346 /* SoundWaveView.swift */,
 				CCA24434244D9FD300B22346 /* BluredSoundWave.swift */,
 				CCA24438244EF6BF00B22346 /* HostViewController.swift */,
+				CC424F7D24653CA60026058B /* FloatingTextView.swift */,
+				CC424F7F246594AE0026058B /* FloatingText.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,7 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				CC414CD9243B9A8200F78AD4 /* RadioStationViewModel.swift */,
-				CC0CCB1A243DABCB000AF2FC /* FloatTextViewModel.swift */,
 				CCA24431244C749100B22346 /* SoundWaveModel.swift */,
 			);
 			path = Models;
@@ -469,7 +472,6 @@
 			files = (
 				CCA2442B244C6B0300B22346 /* SpectrumView.swift in Sources */,
 				CCA2441C244C6AEC00B22346 /* Parsing.swift in Sources */,
-				CC0CCB1B243DABCB000AF2FC /* FloatTextViewModel.swift in Sources */,
 				CCA24422244C6AEC00B22346 /* Downloading.swift in Sources */,
 				CC36765F243C52CF0056B34F /* StationCell.swift in Sources */,
 				CCA243F1244C4E9B00B22346 /* JLAVAudioPlayer.swift in Sources */,
@@ -492,6 +494,7 @@
 				CC173F6E2439A1F600ECF53C /* SceneDelegate.swift in Sources */,
 				CCA24430244C715B00B22346 /* SoundWaveView.swift in Sources */,
 				CCA2441E244C6AEC00B22346 /* Reader.swift in Sources */,
+				CC424F7E24653CA60026058B /* FloatingTextView.swift in Sources */,
 				CC3961C6243CF080002420EE /* UIColor++.swift in Sources */,
 				CC367661243C61170056B34F /* MiniPlayerControl.swift in Sources */,
 				CCA2441B244C6AEC00B22346 /* Parser+Packets.swift in Sources */,
@@ -509,6 +512,7 @@
 				CC3961C4243CF080002420EE /* UIImage++.swift in Sources */,
 				CCA24415244C6AEC00B22346 /* Streaming.swift in Sources */,
 				CCA24424244C6AEC00B22346 /* Downloader+URLSessionDelegate.swift in Sources */,
+				CC424F80246594AE0026058B /* FloatingText.swift in Sources */,
 				CC414CDA243B9A8200F78AD4 /* RadioStationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
