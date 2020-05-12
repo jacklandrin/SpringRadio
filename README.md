@@ -1,5 +1,6 @@
 # SpringRadio
 ![](http://www.jacklandrin.com/wp-content/uploads/2020/04/icon.png)
+
 ![](https://img.shields.io/badge/UI-SwiftUI-blue) ![](https://img.shields.io/badge/platform-iOS-lightgrey) ![](https://img.shields.io/badge/License-Apache-orange)
 ## What is SpringRadio?
 **SpringRadio** is an online radio player with SwiftUI. The player control's background colour could change depending on station's image. Tapping the image on player control, will go to the detail page where there are some floating Text animation. The orientations include horizontal and vertical and it can randomly display. The inspiration comes from Microsoft MP3, Zune HD.
