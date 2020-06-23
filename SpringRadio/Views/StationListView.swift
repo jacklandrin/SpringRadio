@@ -59,6 +59,7 @@ struct StationListView: View {
                     MiniPlayerControl(previousStation: self.items.previousStation, nextStation: self.items.nextStation, pressImage: showDetail)
                         .environmentObject(currentItem())
                         .frame(height:TrapezoidParameters.trapezoidHeight)
+                        .offset(y:controlOffsetY())
                 }.edgesIgnoringSafeArea(.all)
 //                if isShowDetail {
                     StationDetail(backAction:hideDetail)
@@ -128,6 +129,14 @@ struct StationListView: View {
     
     func currentItem() -> RadioStationPlayable {
         return self.items.values[self.items.currentStationIndex]
+    }
+    
+    func controlOffsetY() -> CGFloat {
+        if #available(iOS 14.0, *) {
+            return 20
+        } else {
+            return 0
+        }
     }
 }
 
