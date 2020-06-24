@@ -27,7 +27,7 @@ Since AudioStreamer is not originally designed for realtime audio, the Parser co
 ## Requirement
 * iOS 13
 * Swift 5.2
-* Xcode 11
+* Xcode 11 & 12-beta
 
 ## References
 I referenced these projects:
