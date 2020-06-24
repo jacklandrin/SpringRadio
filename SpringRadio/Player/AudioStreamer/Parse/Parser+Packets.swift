@@ -12,6 +12,11 @@ import os.log
 
 let parserQueue = DispatchQueue(label: "com.fastlearner.streamer.parser",attributes: .concurrent)
 
+func ParserPacketCallback(_ context: UnsafeMutableRawPointer, _ byteCount: UInt32, _ packetCount: UInt32, _ data: UnsafeRawPointer, _ packetDescriptions: UnsafeMutablePointer<AudioStreamPacketDescription>) {
+    let decriptions:UnsafeMutablePointer<AudioStreamPacketDescription>? = packetDescriptions
+    ParserPacketCallback(context, byteCount, packetCount, data, decriptions)
+}
+
 func ParserPacketCallback(_ context: UnsafeMutableRawPointer, _ byteCount: UInt32, _ packetCount: UInt32, _ data: UnsafeRawPointer, _ packetDescriptions: UnsafeMutablePointer<AudioStreamPacketDescription>?) {
     let parser = Unmanaged<Parser>.fromOpaque(context).takeUnretainedValue()
     let packetDescriptionsOrNil: UnsafeMutablePointer<AudioStreamPacketDescription>? = packetDescriptions
@@ -23,15 +28,12 @@ func ParserPacketCallback(_ context: UnsafeMutableRawPointer, _ byteCount: UInt3
         return
     }
     
-    guard let descriptions = packetDescriptions else {
-        return
-    }
     
     parserQueue.sync {
         /// Iterate through the packets and store the data appropriately
         if isCompressed {
             for i in 0 ..< Int(packetCount) {
-                let packetDescription = descriptions[i]
+                let packetDescription = packetDescriptions![i]
                 let packetStart = Int(packetDescription.mStartOffset)
                 let packetSize = Int(packetDescription.mDataByteSize)
                 let packetData = Data(bytes: data.advanced(by: packetStart), count: packetSize)
