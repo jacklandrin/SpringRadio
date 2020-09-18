@@ -77,16 +77,15 @@ struct MiniPlayerControl: View {
                         HStack{
                             Spacer()
                             Button(action:tapPreviousButton) {
-                                Image("previous_button").foregroundColor(self.currentItem.sideColor).opacity(0.9)
+                                Image("previous_button").colorMultiply(self.currentItem.sideColor).opacity(0.9)
                             }
                             Spacer()
                             Button(action:controlPlay) {
-                                Image(self.currentItem.isPlaying ? "pause_button" : "play_button").foregroundColor(self.currentItem.sideColor).opacity(0.9)
-                                    
+                                Image(self.currentItem.isPlaying ? "pause_button" : "play_button").colorMultiply(self.currentItem.sideColor).opacity(0.9)
                             }
                             Spacer()
                             Button(action:tapNextButton) {
-                                Image("next_button").foregroundColor(self.currentItem.sideColor).opacity(0.9)
+                                Image("next_button").colorMultiply(self.currentItem.sideColor).opacity(0.9)
                             }
                             Spacer()
                         }
