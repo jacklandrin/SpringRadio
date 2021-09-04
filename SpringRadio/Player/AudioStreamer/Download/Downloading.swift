@@ -9,7 +9,7 @@
 import Foundation
 
 /// The `Downloading` protocol represents a generic downloader that can be used for grabbing a fixed length audio file.
-public protocol Downloading: class {
+public protocol Downloading: AnyObject {
     
     // MARK: - Properties
     

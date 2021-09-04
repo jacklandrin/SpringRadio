@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 
 /// The `Parsing` protocol represents a generic parser that can be used for converting binary data into audio packets.
-public protocol Parsing: class {
+public protocol Parsing: AnyObject {
     
     // MARK: - Properties
         

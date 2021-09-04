@@ -12,7 +12,7 @@ import Foundation
 /// to a `Downloading` instance. These include whenever the download state
 /// changes, when the download has completed (with or without an error), and
 /// when the downloader has received data.
-public protocol DownloadingDelegate: class {
+public protocol DownloadingDelegate: AnyObject {
     
     /// Triggered when a `Downloading` instance has changed its `Downloading` state during an existing download operation.
     ///
